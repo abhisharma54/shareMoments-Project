@@ -1,0 +1,365 @@
+.comment-main-container {
+  font-family: "Poppins", serif;
+  width: 100%;
+  height: 100vh;
+  color: white;
+  background-color: #202020;
+  background-image: radial-gradient(
+      at 52% 43%,
+      hsl(136.71, 100%, 30%) 0,
+      transparent 69%
+    ),
+    radial-gradient(at 82% 65%, hsl(240, 10%, 13%) 0, transparent 55%);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.comment-bg {
+  width: 50vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(17, 25, 40, 0.59);
+  border: 1px solid rgba(255, 255, 255, 0.275);
+  border-radius: 25px;
+  margin: 3rem;
+  padding: 20px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.cancel-comment {
+  font-size: 1.5rem;
+  margin-bottom: -15px;
+  text-align: end;
+  cursor: pointer;
+}
+
+.cancel-comment:hover {
+  color: rgb(218, 58, 58);
+  text-shadow: 0px 0px 30px rgb(255, 0, 0);
+}
+.cancel-comment:active {
+  color: #00ff47;
+}
+
+.comment-heading {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.comment-wrapper {
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  background-color: rgba(17, 25, 40, 0.59);
+  border: 1px solid rgba(255, 255, 255, 0.275);
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+.comment-user {
+  display: flex;
+  justify-content: space-between;
+}
+
+.commentOption-btn {
+  position: relative;
+}
+
+.editComment-container {
+  position: absolute;
+  top: 35px;
+  right: -2px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  transition: 200ms ease-in-out;
+}
+
+.showCommentEditOption li {
+  padding: 4px 15px;
+  border-radius: 10px;
+  transition: 200ms ease-in-out;
+}
+
+.showCommentEditOption li:hover:last-child {
+  color: rgb(255, 0, 0);
+}
+
+.showCommentEditOption li:last-child {
+  font-size: 1.2rem;
+}
+
+.editCommentBtn {
+  font-size: 1.2rem;
+  color: rgb(33, 122, 255);
+}
+.editCommentBtn:hover {
+  text-decoration: none;
+}
+
+.showCommentEditOption {
+  list-style: none;
+  font-size: 1.3rem;
+  border-radius: 10px;
+  background-color: rgba(17, 25, 40);
+  border: 1px solid rgba(255, 255, 255, 0.175);
+}
+.showCommentEditOption::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+  background-color: rgba(17, 25, 40);
+  border-left: 1px solid rgba(255, 255, 255, 0.175);
+  border-top: 1px solid rgba(255, 255, 255, 0.175);
+  transition: 200ms ease-in-out;
+}
+
+.comment-timestamp {
+  font-size: 0.8rem;
+}
+
+.commentOption-icon {
+  width: 1.9vw;
+}
+
+.comment-user button {
+  height: max-content;
+  outline: none;
+}
+
+.comment-container {
+  margin-top: 5px;
+}
+
+.comment-content {
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin: 20px 0px 15px;
+}
+
+.commentLikes-comments {
+  display: flex;
+  gap: 200px;
+}
+
+.commentLikes-comments img {
+  width: 1.6vw;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+}
+.commentLikes-comments img:active {
+  transform: scale(1.5);
+}
+
+.commentsLike-img,
+.comment-img {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.likesCount,
+.commentsCount {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* --0- Add Comment CSS ---- */
+.addComment-container {
+  display: flex;
+  align-items: end;
+  gap: 1rem;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.addComment-input {
+  width: 100%;
+  text-align: justify;
+  outline: none;
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+  color: white;
+  background-color: rgba(17, 25, 40, 0.39);
+  border: 1px solid rgba(255, 255, 255, 0.175);
+  resize: none;
+  scrollbar-width: none;
+}
+.addComment-input:focus {
+  border: 1px solid #00ff47;
+}
+
+.comment-btn {
+  font-size: 1.1rem;
+  width: 100%;
+  transition: 150ms ease-in-out;
+}
+.comment-btn:hover {
+  box-shadow: 1px 1px 10px 2px #00ff4849;
+}
+.comment-btn:focus {
+  outline: none;
+  background-color: white;
+}
+.commment-error-msg {
+  font-size: 0.85rem;
+  color: #00ff47;
+  text-shadow: 1px 1px 20px #00cd3a;
+  margin: -10px 15px -5px;
+}
+/* -------- Media Query -------- */
+
+@media (max-width: 1920px) {
+  .commentOption-icon {
+    width: 1.2vw;
+  }
+  .comment-timestamp {
+    font-size: 0.8rem;
+  }
+  .comment-content {
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+  }
+  .commentLikes-comments {
+    gap: 60px;
+  }
+  .likesCount,
+  .commentsCount {
+    font-size: 1.3rem;
+  }
+  .commentsLike-img,
+  .comment-img {
+    gap: 10px;
+  }
+  .editComment-container {
+    top: 25px;
+    right: -9px;
+  }
+  .showCommentEditOption li {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 1440px) {
+  .comment-main-container {
+    padding: 20px;
+  }
+  .commentOption-icon {
+    width: 18px;
+  }
+  .comment-timestamp {
+    font-size: 0.75rem;
+  }
+  .showCommentEditOption li {
+    font-size: 1.1rem;
+  }
+  .comment-btn {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .comment-container {
+    margin-top: 5px;
+  }
+  .commentOption-icon {
+    width: 16px;
+  }
+  .comment-timestamp {
+    font-size: 0.65rem;
+  }
+  .comment-content {
+    font-size: 1.1rem;
+    margin: 20px 0px 15px;
+  }
+  .commentLikes-comments img {
+    width: 2.2vw;
+  }
+  .likesCount,
+  .commentsCount {
+    font-size: 1.1rem;
+  }
+  .showCommentEditOption li:last-child, .editCommentBtn {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .comment-main-container {
+    padding: 10px;
+  }
+  .comment-bg {
+    width: 60vw;
+  }
+  .commentOption-icon {
+    width: 14px;
+    margin-right: 10px;
+  }
+  .comment-timestamp {
+    font-size: 0.6rem;
+  }
+  .comment-content {
+    font-size: 1rem;
+    margin: 10px 0px 10px;
+  }
+  .commentLikes-comments img {
+    width: 3vw;
+  }
+  .likesCount,
+  .commentsCount {
+    font-size: 1rem;
+  }
+  .editComment-container {
+    top: 22px;
+    right: 0px;
+  }
+  .showCommentEditOption li:last-child, .editCommentBtn {
+    font-size: 1rem;
+  }
+  .comment-btn {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .comment-bg {
+    width: 100%;
+    margin: 3rem 20px;
+  }
+  .comment-heading {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+  .comment-timestamp {
+    font-size: 0.55rem;
+  }
+  .comment-content {
+    font-size: 1rem;
+    margin: 15px 0px 10px;
+  }
+  .commentLikes-comments img {
+    width: 5vw;
+  }
+  .likesCount,
+  .commentsCount {
+    font-size: 1rem;
+  }
+  .cancel-comment {
+    font-size: 1.5rem;
+    margin-bottom: -15px;
+    text-align: end;
+  }
+}

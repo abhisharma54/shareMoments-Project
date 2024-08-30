@@ -1,0 +1,464 @@
+.profile-main-container {
+    font-family: "Poppins", serif;
+    width: 100%;
+    height: 100vh;
+    color: white;
+    background-color: #202020;
+    background-image: 
+        radial-gradient(at 52% 43%, hsl(136.71, 100%, 30%) 0, transparent 69%), 
+        radial-gradient(at 82% 65%, hsl(240.00, 10%, 13%) 0, transparent 55%);
+    display: flex;
+    overflow: hidden;
+}
+
+.profile-container-right {
+    width: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    padding-inline: 9vw;
+}
+
+.user-profile-container {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(17, 25, 40, 0.59);
+    border: 1px solid rgba(255, 255, 255, 0.275);
+    border-radius: 25px;
+    margin: 20px 0px;
+    padding: 20px 40px;
+    overflow: hidden;
+}
+
+.profile-coverImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.275);
+    background-color: #0072203e;
+    overflow: hidden;
+}
+.profileCoverImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-avatar {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    width: 200px;
+    height: 200px;
+    background-color: #003e12;
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 2px 2px 30px -9px black;
+    margin: -100px 20px;
+    cursor: pointer;
+    z-index: 0;
+    overflow: hidden;
+}
+.profileAvatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.follow-wrapper {
+    display: flex;
+    gap: 12rem;
+    margin-right: -4rem;
+}
+
+.user-details-container {
+    max-width: max-content;
+    margin: -40px 0px 40px;
+}
+.user-details-container h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 0px;
+}
+.user-details-container p {
+    color: #ededed;
+    font-size: 1.4rem;
+    margin-bottom: 0px;
+}
+.user-details-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0px;
+}
+.profile-details-container {
+    width: 100%;
+    display: flex;
+    gap: 15rem;
+    justify-content: end;
+    align-items: center;
+    padding-top: 50px;
+}
+.user-following, .user-followers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+.user-following h3, .user-followers h3 {
+    font-size: 2.3rem;
+    color: #ededed;
+}
+.user-following h1, .user-followers h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.editProfile-btn {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 10px 30px;
+    border-radius: 50px;
+    border: 4px solid #007220;
+    cursor: pointer;
+    transition: 150ms ease-in-out;
+}
+.editProfile-btn:hover {
+    text-decoration: none;
+    color: white;
+    box-shadow: 1px 1px 10px 2px #00ff4849;
+}
+
+.allPosts-counter {
+    background-color: rgba(17, 25, 40, 0.59);
+    color: white;
+    font-size: 2.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    gap: 10px;
+}
+.allPosts-counter h1 {
+    margin-bottom: 0px;
+}
+.allPosts-counter p {
+    font-size: 1.8rem;
+    margin-bottom: 0px;
+}
+
+.sepration-line {
+    border: 1px solid #00ff47;
+    height: 1.5rem;
+    margin: 3px 5px;
+}
+
+.user-allPosts {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.noPost-msg {
+    margin-top: 50px;
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #00ff48a2;
+}
+
+@media (max-width: 1920px) {
+    .profile-container-right {
+        padding-inline: 12vw;
+    }
+    .profile-coverImage {
+        height: 220px;
+    }
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        margin: -70px 20px;
+    }
+    .profile-details-container {
+        gap: 8rem;
+        margin-top: -20px;
+    }
+    .follow-wrapper {
+        gap: 10rem;
+        margin-top: 1rem;
+        margin-right: 3rem;
+    }
+    .user-following h3, .user-followers h3 {
+        font-size: 1.4rem;
+    }
+    .user-following h1, .user-followers h1 {
+        font-size: 1.3rem;
+        margin-top: -5px;
+    }
+    .user-details-container {
+        margin: -30px 0px 40px;
+    }
+    .user-details-container h1 {
+        font-size: 1.3rem;
+    }
+    .user-details-container p {
+        font-size: 1rem;
+    }
+    .user-details-container h3 {
+        font-size: 1.2rem;
+    }
+    .allPosts-counter h1{
+        font-size: 2rem;
+    }
+    .allPosts-counter p {
+        font-size: 1.6rem;
+    }
+    .editProfile-btn {
+        font-size: 1rem;
+    }
+    .editProfileBtn {
+        padding: 8px 20px;
+    }
+}
+
+@media (max-width: 1440px) {
+    .profile-coverImage {
+        height: 180px;
+    }
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        margin: -50px 20px;
+    }
+    .profile-details-container {
+        gap: 4rem;
+        margin-top: -20px;
+    }
+    .follow-wrapper {
+        gap: 5rem;
+        margin-top: 0px;
+    }
+    .user-following h3, .user-followers h3 {
+        font-size: 1.3rem;
+        margin-bottom: 2px;
+    }
+    .user-following h1, .user-followers h1 {
+        font-size: 1.1rem;
+    }
+    .user-details-container {
+        margin-top: -1.6rem;
+    }
+    .user-details-container h1 {
+        font-size: 1.1rem;
+    }
+    .user-details-container p {
+        font-size: 0.86rem;
+    }
+    .user-details-container h3 {
+        font-size: 1rem;
+    }
+    .allPosts-counter h1{
+        font-size: 1.7rem;
+    }
+    .editProfile-btn {
+        font-size: 1rem;
+        padding: 8px 30px;
+        border: 3px solid #007220;
+    }
+}
+
+@media (max-width: 1024px) {
+    .profile-coverImage {
+        height: 150px;
+    }
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        margin: -40px 20px;
+    }
+    .profile-details-container {
+        gap: 2rem;
+        margin-top: -30px;
+    }
+    .follow-wrapper {
+        gap: 3rem;
+        margin-right: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    .user-following h3, .user-followers h3 {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+    .user-following h1, .user-followers h1 {
+        font-size: 0.9rem;
+    }
+    .user-details-container h1 {
+        font-size: 0.9rem;
+    }
+    .user-details-container p {
+        font-size: 0.76rem;
+    }
+    .user-details-container h3 {
+        font-size: 0.9rem;
+    }
+    .allPosts-counter h1{
+        font-size: 1.5rem;
+    }
+    .allPosts-counter p {
+        font-size: 1.5rem;
+    }
+    .editProfile-btn {
+        font-size: 0.8rem;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-container-right {
+        padding-inline: 7vw;
+    }
+    .profile-coverImage {
+        height: 120px;
+    }
+    .profile-avatar {
+        width: 60px;
+        height: 60px;
+        margin: -30px 20px;
+    }
+    .user-profile-container {
+        padding-inline: 20px;
+    }
+    .profile-details-container {
+        width: max-content;
+        gap: 0.2rem;
+        flex-direction: column;
+    }
+    .follow-wrapper {
+        width: 100%;
+        margin-top: 0rem;
+        justify-content: end;
+        gap: 4rem;
+        margin-right: 30px;
+    }
+    .editProfile-btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 4rem;
+        margin: 0px 10px 3rem 15rem;
+    }
+    .user-following h3, .user-followers h3 {
+        font-size: 0.9rem;
+    }
+    .user-following h1, .user-followers h1 {
+        font-size: 0.8rem;
+    }
+    .user-details-container {
+        margin: -110px 0px 40px;
+    }
+    .user-details-container h1 {
+        font-size: 0.9rem;
+    }
+    .user-details-container p {
+        font-size: 0.7rem;
+    }
+    .user-details-container h3 {
+        font-size: 0.8rem;
+    }
+    .allPosts-counter {
+        gap: 5px;
+        padding: 5px 13px;
+    }
+    .allPosts-counter h1 {
+        font-size: 1.4rem;
+    }
+    .allPosts-counter p {
+        font-size: 1.3rem;
+    }
+    .user-allPosts {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 425px) {
+    .profile-container-right {
+        padding-inline: 20px;
+    }
+    .profile-coverImage {
+        height: 100px;
+    }
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        margin: -35px 15px;
+    }
+
+    .profile-details-container {
+        width: 100%;
+        margin-top: -45px;
+    }
+    .follow-wrapper {
+        width: 100%;
+        gap: 2rem;
+        margin-top: 22px;
+        margin-right: 20px;
+    }
+    .editProfile-btn {
+        font-size: 0.8rem;
+        font-weight: 400;
+        width: 100%;
+        text-align: center;
+        margin: 2rem 0px 3rem;
+    } 
+    .user-following h3, .user-followers h3 {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+    .user-following h1, .user-followers h1 {
+        font-size: 0.8rem;
+    }
+    .user-details-container {
+        margin: -146px 0px 60px;
+    }
+    .user-details-container h1 {
+        font-size: 0.9rem;
+        letter-spacing: 0px;
+        margin-bottom: 0px;
+    }
+    .user-details-container p {
+        font-size: 0.68rem;
+        margin-bottom: 0px;
+    }
+    .user-details-container h3 {
+        font-size: 0.8rem;
+        margin-bottom: 0px;
+    }
+    .allPosts-counter {
+        gap: 5px;
+        margin-top: 1rem;
+        padding: 5px 12px;
+    }
+    .allPosts-counter h1 {
+        font-size: 1.2rem;
+    }
+    .allPosts-counter p {
+        font-size: 1.2rem;
+    }
+    .user-allPosts {
+        margin-top: 10px;
+    }
+}
