@@ -1,7 +1,6 @@
 import Input from "./Input";
 import Button from "./Button";
 import Header from "./Home/Header";
-import Footer from "./Footer/Footer"
 import Logo from "./Logo";
 import Title from "./Title";
 import Navbar from "./Home/Navbar";
@@ -25,7 +24,6 @@ export {
     Input,
     Button, 
     Header, 
-    Footer, 
     Logo,
     Title,
     Navbar,

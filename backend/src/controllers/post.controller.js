@@ -137,6 +137,7 @@ const getUserPosts = AsyncHandler(async(req, res) => {
         pipeline: [
           {
             $project: {
+              fullname: 1,
               username: 1,
               avatar: 1,
             }
@@ -184,7 +185,6 @@ const getUserPosts = AsyncHandler(async(req, res) => {
         totalLikes: 1,
         isLiked: 1,
         createdAt: 1,
-        totalLikes: 1,
       }
     }
   ])

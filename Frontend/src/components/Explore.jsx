@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { PostCard, User } from "./index";
 import { PostOptions, CommentImg, LikedImg, UnlikeImg } from "../assets/Asset";
 import { Link } from "react-router-dom";
-import "./CSS/Explore.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
@@ -10,10 +9,9 @@ function Explore() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState([]);
-
+   
   const userDetails = useSelector((state) => state.users.userData);
-  const postDetails = useSelector((state) => state.posts.postData);
-  console.log("explore postDetails::", postDetails);
+
   const editPostRef = useRef();
 
   console.log("explore page::", allPosts);
@@ -74,9 +72,9 @@ function Explore() {
   };
 
   return (
-    <div className="explore-main-container">
-      <div className="explore-container">
-        <div className="explore-bg">
+    <div className="explore-main-container w-full h-screen text-white font-custom-font bg-bgColor bg-bgGradient-color flex overflow-hidden">
+      <div className="explore-container w-full overflow-y-scroll px-[9vw] scrollbar-none max-[425px]:px-5">
+        <div className="explore-bg w-full min-h-[100%] border-s-[rgba(255,255,255,0.275)] bg-[rgba(17,25,40,0.59)] rounded-3xl my-[10px] mx-0 px-[40px] py-[20px] overflow-hidden max-[425px]:px-[15px]">
           {allPosts.length === 0 ? (
             <p className="no-post-msg">
               {loading ? "Loading Explore page..." : "No Post Available"}
@@ -85,7 +83,11 @@ function Explore() {
             allPosts.map((post) => (
               <div className="post-main-container" key={post._id}>
                 <div className="post-user">
-                  <User />
+                  <User 
+                  fullname={post.ownerDetails?.[0].fullname}
+                  username={post.ownerDetails?.[0].username}
+                  avatar={post.ownerDetails?.[0].avatar?.url}
+                  />
                   <button
                     className="postOption-btn"
                     onClick={() => handleEditOption(post._id)}

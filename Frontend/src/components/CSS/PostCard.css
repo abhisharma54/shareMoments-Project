@@ -1,102 +1,7 @@
-p, h1 {
-    margin-bottom: 0px;
-}
-.post-main-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 30px 50px 70px;
-    background-color: rgba(17, 25, 40, 0.59);
-    border: 1px solid rgba(255, 255, 255, 0.175);
-    color: white;
-    font-family: "Poppins", serif;
-    border-radius: 25px;
-    margin-top: 10px;
-}
 
-.post-user {
-    display: flex;
-    justify-content: space-between;
-}
-
-.postOption-btn {
-    position: relative;
-}
-
-.postOption-icon {
-    width: 30px;
-}
-
-.post-user button {
-    height: max-content;
-    outline: none;
-}
-
-.post-timestamp {
-    font-size: 0.8rem;
-    margin-bottom: 0px;
-}
-
-.post-container {
-    margin-top: 10px;
-}
-
-.post-content {
-    font-size: 1.7rem;
-    letter-spacing: 1px;
-    margin: 30px 0px 20px;
-}
-
-.post-img {
-    display: flex;
-    justify-content: center;
-    height: 60vh;
-    border: 1px solid rgba(255, 255, 255, 0.175);
-    border-radius: 15px;
-}
-
-.post-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
-}
-
-.post-likes-comments {
-    display: flex;
-    gap: 200px;
-    margin: 20px 0px;
-}
-
-.post-likes-comments img {
-    width: 2.7vw;
-    transition: 300ms ease-in-out;
-}
-.post-likes-comments img:active {
-    transform: scale(1.4);
-}
-
-
-.likes, .comments {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-.post-likesCount, .post-commentsCount {
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-.no-post-msg {
-    font-size: 1.4rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-align: center;
-    margin-top: 2rem;
-    text-shadow: 1px 1px 20px #00cd3a;
-    color: #00ff47;
-}
+/* .no-post-msg {
+    text-shadow: 1px 1px 20px #00cd3a; // set this
+} */
 
 .editPostOption-container {
     display: flex;
@@ -149,150 +54,9 @@ p, h1 {
     text-decoration: none;
 }
 
-.allComment-container {
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    width: 100%;
-    padding: 10px 10px 20px;
-    border-radius: 10px;
-    background-color: rgba(17, 25, 40);
-    border: 1px solid rgba(255, 255, 255, 0.175);
-    transition: 150ms ease-in-out;
-}
-.allComment-container:hover {
-    text-decoration: none;
-    background-color: rgb(15, 19, 27);
-}
-.allComment-container p{
-    color: white;
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-.showFirstComment {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: white;
-    margin-top: 10px;
-}
-.showFirstComment h1:hover {
-    text-decoration: dashed;
-}
-.showFirstComment img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid #00cd3a;
-    object-fit: cover;
-}
-.showFirstComment h1 {
-    font-size: 1.1rem;
-}
-.showFirstComment p {
-    font-size: 0.8rem;
-}
-.first-comment {
-    color: white;
-    font-size: 1.2rem;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    margin-top: 10px;
-}
-
 /* ---------- Media Query ---------- */
 
-@media (max-width: 1920px) {
-    .post-container {
-        margin-top: 5px;
-    }
-    .post-timestamp {
-    font-size: 0.75rem;
-    }
-    .post-content {
-        font-size: 1.3rem;
-    }
-    .postOption-icon {
-        width: 25px;
-    }
-    .post-likes-comments img {
-        width: 1.8vw;
-    }
-    .likes, .comments {
-        gap: 10px;
-    }
-    .post-likes-comments img {
-        width: 2.5vw;
-    }
-    .post-likesCount, .post-commentsCount {
-        font-size: 1.6rem;
-    }
-    .editPostOption-container {
-        top: 25px;
-        right: -9px;
-    }
-    .showEditOption li {
-        font-size: 1.3rem;
-    }
-    .showFirstComment img {
-        width: 35px;
-        height: 35px;
-    }
-    .showFirstComment h1 {
-        font-size: 0.9rem;
-    }
-    .showFirstComment p {
-        font-size: 0.65rem;
-    }
-}
-
-@media (max-width: 1440px) {
-    .post-main-container {
-        padding: 20px 30px 50px;
-    }
-    .post-timestamp {
-        font-size: 0.7rem;
-    }
-    .post-content {
-        font-size: 1.2rem;
-    }
-    .post-likes-comments img {
-        width: 2.7vw;
-    }
-    .postOption-icon {
-        width: 22px;
-    }    
-    .showEditOption {
-        font-size: 1.2rem;
-    }
-}
-
 @media (max-width: 1024px) {
-    .post-main-container {
-        padding: 20px 30px 50px;
-    }
-    .post-container {
-        margin-top: 5px;
-    }
-    .post-timestamp {
-        font-size: 0.65rem;
-    }
-    .postOption-icon {
-        width: 20px;
-    }    
-    .post-img {
-        height: 50vh;
-    }
-    .post-content {
-        font-size: 1rem;
-    }
-    .post-likesCount, .post-commentsCount {
-        font-size: 1.5rem;
-    } 
-    .post-likes-comments img {
-        width: 3.5vw;
-    }
     .editPostOption-container {
         top: 20px;
         right: -12px;
@@ -300,80 +64,16 @@ p, h1 {
 }
 
 @media (max-width: 768px) {
-    .post-main-container {
-        padding: 10px 20px 30px;
-    }
-    .postOption-icon {
-        width: 16px;
-        margin-right: 10px;
-    }    
-    .post-content {
-        font-size: 1rem;
-        letter-spacing: 0.5px;
-        margin: 20px 0px 10px;
-    }
-    .post-img {
-        height: 40vh;
-    }
-    .post-timestamp {
-        font-size: 0.6rem;
-    }
-    .likes, .comments {
-        gap: 10px;
-    }
-    .post-likes-comments img {
-        width: 4.5vw;
-    }
-    .post-likesCount, .post-commentsCount {
-        font-size: 1.5rem;
-    } 
     .editPostOption-container {
         top: 22px;
         right: -3px;
     }
-    .showEditOption li {
-        font-size: 1rem;
-    }
-    .first-comment {
-        font-size: 1.1rem;
-    }
 }
 
 @media (max-width: 425px) {
-    .post-main-container {
-        padding: 15px 10px 20px;
-    }
-    .post-container {
-        margin-top: 5px;
-    }
     .postOption-icon {
         width: 18px;
         margin-right: 10px;
-    }
-    .post-timestamp {
-        font-size: 0.58rem;
-    }
-    .post-img {
-        height: 40vh;
-    }
-    .post-likes-comments {
-        gap: 100px;
-    }
-    .likes, .comments {
-        gap: 6px;
-    }
-    .post-likes-comments img {
-        width: 6.8vw;
-    }
-    .post-likesCount, .post-commentsCount {
-        font-size: 1.2rem;
-        font-weight: 500;
-    }
-    .editPostOption-container {
-        right: 0px;
-    }
-    .showEditOption li {
-        font-size: 1rem;
     }
 }
 

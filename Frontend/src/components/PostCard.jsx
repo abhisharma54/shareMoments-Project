@@ -13,12 +13,13 @@ function PostCard() {
   const [error, setError] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
+
   const userDetails = useSelector((state) => state.users.userData);
-  const commentDetails = useSelector((state) => state.comments.commentData);
+
   const dispatch = useDispatch();
   const editPostRef = useRef();
 
-  console.log("comment details :: ", commentDetails);
+  console.log("comment details :: ", postData);
   
   useEffect(() => {
     // get user's posts
@@ -76,10 +77,9 @@ function PostCard() {
       const res = await axios.post(
         `${import.meta.env.VITE_LIKES_API_URL}/togglePost/${postId}`
       );
+      console.log("post likes ::", res.data.data);
       
       const { isLiked } = res.data.data;
-
-      // dispatch(post(postData.isLiked))
 
       setPostData((prevPosts) =>
         prevPosts.map((post) =>
@@ -116,24 +116,28 @@ function PostCard() {
       )}
 
       {postData.length === 0 ? (
-        <p className="no-post-msg">{loading? "Loading posts page..." : "No Post Available"}</p>
+        <p className="no-post-msg text-[1.4rem] font-semibold tracking-wide text-center mt-8 text-[#00ff47] shadow-[1px 1px 20px #00cd3a]">{loading? "Loading posts page..." : "No Post Available"}</p>
       ) : (
         postData.map((post) => (
-          <div className="post-main-container" key={post._id}>
-            <div className="post-user">
-              <User />
+          <div className="post-main-container w-full flex flex-col px-4 py-4 bg-[rgba(17,25,40,0.59)] overflow-hidden border-[1px] border-custom-border text-white font-custom-font rounded-3xl mt-[10px] max-[425px]:py-3" key={post._id}>
+            <div className="post-user flex justify-between">
+              <User 
+              fullname={post.ownerDetails?.fullname}
+              username={post.ownerDetails?.username}
+              avatar={post.ownerDetails?.avatar?.url}
+              />
               <button
-                className="postOption-btn"
+                className="postOption-btn relative max-h-0 focus:outline-none"
                 onClick={() => handleEditOption(post._id)}
               >
                 <img
-                  className="postOption-icon"
+                  className="postOption-icon w-[30px] max-[1440px]:w-[22px] max-[1024px]:w-[20px] max-[768px]:w-[16px] max-[768px]:mr-2.5 max-[425px]:w-[18px] max-[425px]:mr-10px"
                   src={PostOptions}
                   alt="post-options"
                 />
                 {post.showEdit && (
                   <div className="editPostOption-container" ref={editPostRef}>
-                    <ul className="showEditOption">
+                    <ul className="showEditOption text-[1.2rem] max-[768px]:text-[1rem]">
                       <li>
                         <Link
                           className="editPostBtn"
@@ -154,45 +158,54 @@ function PostCard() {
                 )}
               </button>
             </div>
-            <div className="post-container">
-              <p className="post-timestamp">
+            <div className="post-container mt-2.5 max-[1024px]:mt-[5px]">
+              <p className="post-timestamp text-sm max-[1440px]:text-[0.7rem] max-[1024px]:text-[0.65rem] max-[768px]:text-[0.6rem] max-[425px]:text-[0.58rem]">
                 {new Date(post.createdAt).toLocaleString("en-IN")}
               </p>
-              <h1 className="post-content">{post.content}</h1>
+              <h1 className="post-content text-[1.7rem] my-[30px] max-[1440px]:text-[1.3rem] max-[1440px]:my-[20px] max-[1024px]:text-lg max-[1024px]:my-[10px] max-[768px]:text-base max-[425px]:my-[5px]">{post.content}</h1>
               {post.postImage && (
-                <div className="post-img">
-                  <img src={post.postImage} alt={post._id} />
-                </div>
+                  <div className="flex justify-center w-full h-[600px] object-cover border-[1px] border-custom-border rounded-2xl max-[1024px]:h-[400px] max-[425px]:h-[300px]">
+                    <img
+                  className="post-img w-full h-full object-cover rounded-2xl" 
+                  src={post.postImage} alt={post._id} />
+                  </div>
               )}
-              <div title="like" className="post-likes-comments">
-                <div onClick={() => likePost(post._id)} className="likes">
+              <div title="like" className="post-likes-comments flex gap-[200px] my-[30px] max-[1024px]:my-[25px] max-[768px]:my-[20px] max-[425px]:my-[15px] max-[425px]:gap-[100px]">
+                <div className="like flex items-center gap-3 max-[768px]:gap-2.5 max-[425px]:gap-2">
+                  <button 
+                  className="focus:outline-none"
+                  onClick={() => likePost(post._id)}>
                   <img
-                    src={post.isLiked ? LikedImg : UnlikeImg}
-                    alt="like status"
+                  className="w-[2.5vw] transition-all duration-300 ease-in-out active:scale-[1.4] max-[1440px]:w-[2.7vw] max-[1024px]:w-[3.5vw] max-[768px]:w-[4.5vw] max-[425px]:w-[7.4vw]"
+                  src={post.isLiked ? LikedImg : UnlikeImg}
+                  alt="like-status"
                   />
-                  <span className="post-likesCount">{post.totalLikes}</span>
+                  </button>
+                  <span className="text-[2rem] font-semibold tracking-wider max-[1024px]:text-[1.5rem]">{post.totalLikes}</span>
                 </div>
-                <div title="comment" className="comments">
+                <div title="comment" className="comments flex items-center gap-3">
                   <Link to={`getAllComment/${post._id}`}>
-                  <img src={CommentImg} alt="comments" />
+                  <img 
+                  className="w-[2.5vw] transition-all duration-300 ease-in-out active:scale-[1.4] max-[1440px]:w-[2.7vw] max-[1024px]:w-[3.5vw] max-[768px]:w-[4.2vw] max-[425px]:w-[6.8vw]"
+                  src={CommentImg} 
+                  alt="comments" />
                   </Link>
-                  <span className="post-commentsCount">0</span>
+                  <span className="text-[2rem] font-semibold tracking-wider max-[1024px]:text-[1.5rem]">0</span>
                 </div>
               </div>
               <Link
                 to={`getAllComment/${post._id}`}
-                className="allComment-container"
+                className="allComment-container w-full flex flex-col py-4 px-2.5 rounded-xl bg-[rgba(17,25,40)] border-[1px] border-custom-border transition duration-150 ease-in-out hover:no-underline hover:bg-black"
               >
-                <p>Comments</p>
-                {/* <div className="showFirstComment">
-                  <img className="comment-owner-avatar" src={commentDetails[0].owner.avatar?.url} alt="comment-owner-avatar" />
+                <p className="text-white text-lg font-medium max-[768px]:text-base max-[425px]:text-[0.95rem]">Comments</p>
+                {/* <div className="showFirstComment flex items-center gap-2.5 text-white mt-2.5">
+                  <img className="w-[40px] h-[40px] object-cover rounded-full border-[1px] border-[#00cd3a]" src={commentDetails[0].owner.avatar?.url} alt="comment-owner-avatar" />
                   <div className="flex flex-col gap-0">
-                  <h1>{commentDetails[0].owner.fullname}</h1>
-                  <p>{commentDetails[0].owner.username}</p>
+                  <h1 className="text-[1.1rem] decoration-dashed">{commentDetails[0].owner.fullname}</h1>
+                  <p className="text-[0.8rem]">{commentDetails[0].owner.username}</p>
                   </div>
                 </div>
-                  <div className="first-comment">{commentDetails[0].comment}</div> */}
-
+                  <div className="first-comment text-white text-[1.2rem] font-medium tracking-wider mt-[10px] max-[768px]:text-[1.1rem]">{commentDetails[0].comment}</div> */}
               </Link>
             </div>
           </div>

@@ -9,7 +9,7 @@ import { comments } from "../store/commentSlice";
 
 function Comment() {
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
   const [allComments, setAllComments] = useState([]);
@@ -23,17 +23,17 @@ function Comment() {
 
   const fetchComments = useCallback(async () => {
     try {
-      setLoading(true);
       setError("");
 
       const res = await axios.get(
         `${import.meta.env.VITE_COMMENTS_API_URL}/getPostComment/${postId}`
       );
       const commentData = res.data.data.docs;
+      console.log(res.data.data);
+      
       
       setAllComments(commentData);
       dispatch(comments(commentData));
-      setLoading(false);
     } catch (error) {
       setError("Failed to fetch comment data " + error.message);
     } finally {
@@ -72,9 +72,7 @@ function Comment() {
       );
       console.log("comment's like :: ", res.data.data);
       
-
-      const { isCommentLiked } = res.data.data
-      console.log("comment's likes :: ", isCommentLiked);
+      const { isCommentLiked } = res.data.data;
       
       setAllComments((prevComment) =>
         prevComment.map((comment) =>
@@ -91,6 +89,8 @@ function Comment() {
       );
     } catch (error) {
       setError("Failed to like comment " + error.message);
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -122,7 +122,11 @@ function Comment() {
             allComments.map((comment) => (
               <div key={comment._id} className="comment">
                 <div className="comment-user">
-                  <User />
+                  <User 
+                  fullname={comment.owner.fullname}
+                  username={comment.owner.username}
+                  avatar={comment.owner.avatar?.url}
+                  />
                   <button
                     onClick={() => handleEditComment(comment._id)}
                     className="commentOption-btn"

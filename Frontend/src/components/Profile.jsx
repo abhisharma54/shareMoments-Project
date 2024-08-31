@@ -136,7 +136,7 @@ function Profile() {
           <div className="allPosts-counter">
             <h1>All Posts</h1>
             <div className="sepration-line"></div>
-            <p>{postDetails.length}</p>
+            <p>{postDetails?.length}</p>
           </div>
           <div className="user-allPosts">
             <PostCard />
