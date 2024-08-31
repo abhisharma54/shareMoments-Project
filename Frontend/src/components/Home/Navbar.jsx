@@ -9,7 +9,6 @@ import {
   Menu,
   logoutIcon,
 } from "../../assets/Asset.js";
-import "../CSS/Navbar.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { logout } from "../../store/authSlice.js";
@@ -68,31 +67,31 @@ function Navbar() {
     {
       path: "home",
       name: "Home",
-      icon: <img src={HomeIcon} alt="home-icon" />,
+      icon: HomeIcon,
       active: authStatus,
     },
     {
       path: `profile/${userDetails?.username}`,
       name: "Profile",
-      icon: <img src={ProfileIcon} alt="home-icon" />,
+      icon: ProfileIcon,
       active: authStatus,
     },
     {
       path: "addPost",
       name: "New Post",
-      icon: <img src={NewPostIcon} alt="home-icon" />,
+      icon: NewPostIcon,
       active: authStatus,
     },
     {
       path: "explore",
       name: "Explore",
-      icon: <img src={ExploreIcon} alt="home-icon" />,
+      icon: ExploreIcon,
       active: authStatus,
     },
     {
       path: "about",
       name: "About",
-      icon: <img src={AboutIcon} alt="home-icon" />,
+      icon: AboutIcon,
       active: authStatus,
     },
   ];
@@ -102,37 +101,49 @@ function Navbar() {
 
   return (
     <>
-      <Link to="#" title="menu-bar" className="menu-bar" onClick={() => setMenuOpen(prev => !prev)}>
+      <Link to="#" title="menu-bar" className="menu-bar absolute top-0 right-0 w-[6vw] m-[20px] hidden cursor-pointer transition duration-200 ease-in-out hover:scale-[1.2] max-[425px]:block" onClick={() => setMenuOpen(prev => !prev)}>
         <img src={Menu} alt="menu-icon" />
       </Link>
-      <div className="navbar-main-container">
-        <div className={menuOpen ? "menuOpen" : "navbar-container"} ref={navbarRef}>
-          <Link to="home" className="upper-container" onClick={handleLinkClick}>
-            <Logo className="navbar-logo" />
-            <Title className="navbar-title" />
+      <div className="navbar-main-container w-full h-screen flex font-custom-font bg-bgColor bg-bgNavbar-color overflow-hidden">
+        <div className={menuOpen ? "menuOpen flex flex-col items-center w-[12vw] h-full p-[20px] bg-bgColor bg-bgNavbar-color transition duration-200 ease-in-out max-[425px]:w-[50vw] max-[425px]:h-full max-[425px]:absolute max-[425px]:left-0 max-[425px]:z-10" : "navbar-container flex flex-col items-center w-[12vw] h-full p-[20px] transition duration-200 ease-in-out max-[1440px]:w-[14vw] max-[1024px]:w-[19vw] max-[768px]:w-[22vw] max-[768px]:my-[30px] max-[425px]:absolute max-[425px]:left-[-100%] max-[425px]:right-0"} ref={navbarRef}>
+          <Link 
+          to="home" 
+          className="upper-container flex items-center gap-1.5 w-[11vw] transition duration-150 ease-in-out cursor-pointer hover:scale-[1.05] max-[768px]:justify-center max-[425px]:m-auto max-[425px]:w-[40vw]"
+          onClick={handleLinkClick}
+          >
+            <Logo className="navbar-logo w-[50px] max-[768px]:w-[6vw] max-[425px]:w-[9vw]" />
+            <Title className="navbar-title w-[220px] max-[768px]:hidden max-[425px]:block" />
           </Link>
 
-          <div className="lower-container">
-            <ul className="navLink-container">
+          <div className="lower-container h-full flex flex-col justify-between max-[768px]:items-center max-[768px]:mt-[-20px]">
+            <ul className="navLink-container my-[50px]">
               {navRoutes.map((item) =>
                 (
                   <li key={item.name}>
-                    <NavLink to={item.path} onClick={handleLinkClick} className="navLink-container-links">
-                      <div className="links-img">{item.icon}</div>
-                      <h1>{item.name}</h1>
+                    <NavLink 
+                    to={item.path} 
+                    onClick={handleLinkClick} 
+                    className="navLink-container-links flex items-center gap-1.5 mb-[35px] cursor-pointer transition duration-150 ease-in-out hover:no-underline hover:scale-[1.05] max-[1440px]:ml-2.5 max-[1024px]:mb-[1.4rem] ">
+                      <img src={item.icon} alt="navLink-icon" className="links-img w-[1.6vw] max-[1024px]:w-[2.1vw] max-[768px]:w-[2.5vw] max-[425px]:w-[5vw]" />
+                      <h1 className="font-custom-font font-bold text-[1.3rem] tracking-wider ml-[5px] mb-0 text-white transition duration-200 ease-in-out text-nowrap pr-3 hover:text-[#00ff47] max-[1440px]:text-[1.1rem] max-[1024px]:text-[1rem] max-[425px]:text-[1.2rem]">{item.name}</h1>
                     </NavLink>
                   </li>
                 )
               )}
             </ul>
 
-            <div className="btn-wrapper">
-              <button onClick={logoutHandle} className="logoutBtn  text-zinc-800 tracking-wider rounded-full font-bold shadow-xl">
+            <div className="btn-wrapper flex flex-col justify-center">
+              <button 
+              onClick={logoutHandle}
+              className="logoutBtn w-full flex justify-center items-center gap-2.5 px-[5px] py-[10px] font-custom-font font-semibold rounded-full bg-[rgba(255,0,0,0.81)] text-white mb-[1.2rem] transition duration-200 ease-in-out hover:shadow-logoutBtn max-[1024px]:p-2.5"
+              >
                 <img 
                   src={logoutIcon} 
                   title="logout-icon" 
-                  alt="logout-icon" />
-                <p>Logout</p>
+                  alt="logout-icon"
+                  className="w-[1.6vw] max-[1440px]:w-[1.4vw] max-[1024px]:w-[1.8vw] max-[768px]:w-[3vw] max-[425px]:w-[5.5vw]"
+                   />
+                <p className="text-[1rem] max-[1024px]:text-[0.9rem] max-[768px]:hidden max-[425px]:block max-[425px]:text-[1rem]">Logout</p>
               </button>
               {/* <button className="profile-container">
                 <img
@@ -146,7 +157,7 @@ function Navbar() {
           </div>
         </div>
 
-        <main>
+        <main className="w-full h-full">
           <Outlet />
         </main>
       </div>

@@ -1,6 +1,5 @@
 import React from "react";
-import { Navbar, Title, Logo } from "./index";
-import "./CSS/about.css";
+import { Title, Logo } from "./index";
 
 function About() {
   return (
