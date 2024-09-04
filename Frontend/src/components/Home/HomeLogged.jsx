@@ -1,23 +1,21 @@
 import React from 'react'
-import { Header } from '../index'
 import HomeLoggedImg from '../../assets/img/HomeLogged.png'
-import '../CSS/HomeLogged.css'
 import { titleImg } from '../../assets/Asset'
 
 function HomeLogged() {
 
   return (
     <>
-    <section className='HomeLogged-section'>
-      <div className='HomeLogged-container'>
-        <div className='HomeLogged-container-left'>
-            <h1 className=' text-white'>WELCOME TO</h1>
-            <img src={titleImg} alt="shareMomentImg" />
-            <p className='text-[1.24rem] line-clamp-1 mt-2 text-white font-semibold'>WHERE YOU CAN SHARE YOUR THOUGHTS AND <span className='text-[#00ff47]'>BEST MOMENTS</span> OF YOUR LIFE.</p>
+    <section className='HomeLogged-section w-full h-full flex justify-center items-center bg-bgColor bg-bgHomeLogged-color overflow-hidden'>
+      <div className='HomeLogged-container flex items-center justify-center gap-[30px] w-full px-[3.2rem] overflow-hidden max-[1440px]:px-[6.3rem] max-[1024px]:px-[1rem] max-[1024px]:gap-[10px] max-[768px]:flex-col max-[768px]:gap-8 max-[425px]:gap-12'>
+        <div className='HomeLogged-container-left w-[50vw] flex flex-col items-center justify-center max-[768px]:w-full max-[768px]:mt-10 max-[425px]:mt-0'>
+            <h1 className=' text-white text-[7rem] text-nowrap font-semibold mb-0 max-[1440px]:text-[5.5rem] max-[1024px]:text-[4rem] max-[768px]:text-[5rem] max-[425px]:text-[3rem]'>WELCOME TO</h1>
+            <img className='w-[47rem] max-[1440px]:w-[35rem] max-[1024px]:w-[27rem] max-[768px]:w-[70vw] max-[425px]:w-[80vw]' src={titleImg} alt="shareMomentImg" />
+            <p className='text-[1.24rem] text-nowrap mt-2 text-white font-semibold max-[1440px]:text-[0.95rem] max-[1024px]:text-[0.75rem] max-[768px]:text-[0.92rem] max-[425px]:text-[0.58rem]'>WHERE YOU CAN SHARE YOUR THOUGHTS AND <span className='text-[#00ff47]'>BEST MOMENTS</span> OF YOUR LIFE.</p>
         </div>
 
-        <div className="HomeLogged-container-right">
-            <img src={HomeLoggedImg} alt="home-logged-img" />
+        <div className="HomeLogged-container-right flex justify-center items-center w-[50vw] max-[768px]:w-[70vw] max-[425px]:w-full">
+            <img className='w-full h-[80vh] max-[768px]:h-full object-contain mix-blend-hard-light' src={HomeLoggedImg} alt="home-logged-img" />
         </div>
         </div>
     </section>

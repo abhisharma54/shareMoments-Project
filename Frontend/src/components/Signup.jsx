@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 import { Button, Input, MessageCard, Title } from "./index";
 import { SignupImg } from "../assets/Asset";
 import { useForm } from "react-hook-form";
@@ -75,53 +75,56 @@ function Signup() {
   // {error? <h1 className="text-center text-xl text-[#00ff47] font-semibold">{error.message}</h1> : null}
   return (
     <>
-      <div className="signup-main-container">
+      <div className="signup-main-container flex justify-center items-center w-full h-full bg-bgColor bg-bgHomeLoggedIn-color overflow-hidden">
         <div className={registerMsg? "absolute z-10 w-full" : "hidden"}>
           <MessageCard onButtonClick={handleRegisterMsg}/>
         </div>
-        <div className={registerMsg? "signup-container blur-md" : "signup-container"}>
-          <div className="signup-container-left">
-            <img src={SignupImg} alt="signup-page-img" />
+        <div className={registerMsg? "flex justify-center items-center gap-[30px] px-[40px] blur-md" : "signup-container flex justify-center items-center gap-[30px] px-[40px] max-[1440px]:w-full max-[1440px]:h-full max-[1440px]:gap-0 max-[1024px]:gap-[10px] max-[768px]:px-[120px]"}>
+          <div className="signup-container-left flex justify-center items-center w-[40vw] px-[30px] max-[1024px]:w-[60vw] max-[425px]:text-center max-[425px]:p-0 max-[425px]:mx-[12px] max-[768px]:hidden">
+            <img className="mix-blend-hard-light w-full h-full object-contain" src={SignupImg} alt="signup-page-img" />
           </div>
-          <div className="signup-container-right">
-            <div className="section">
-              <div className="signup-login">
+          <div className="signup-container-right flex justify-center items-center w-[50vw]">
+            <div className="section max-[768px]:w-[90vw] max-[425px]:w-[90vw]">
+              <div className="signup-login flex justify-center items-center m-auto w-max rounded-xl border-[1px] border-[#00a32e] shadow-signup-login overflow-hidden max-[425px]:mb-[-30px]">
                 <span
-                  className={isSignUp ? "active" : "span"}
+                  className={isSignUp ? "active bg-[#00a32e] text-white text-[1.5rem] font-bold px-[15px] py-[5px] transition duration-200 ease-in-out cursor-pointer hover:bg-[#00a32e] max-[768px]:text-[1.3rem] max-[425px]:text-[1.1rem]" : "span bg-bgColor text-white text-[1.5rem] font-bold px-[15px] py-[5px] transition duration-200 ease-in-out cursor-pointer hover:bg-[#005217] max-[768px]:text-[1.3rem] max-[425px]:text-[1.1rem]"}
                   onClick={() => setIsSignUp(true)}
                 >
                   Sign Up
                 </span>
                 <span
-                  className={!isSignUp ? "active" : "span"}
+                  className={!isSignUp ? "active bg-[#00a32e] text-white text-[1.5rem] font-bold px-[15px] py-[5px] transition duration-200 ease-in-out cursor-pointer hover:bg-[#00a32e] max-[768px]:text-[1.3rem] max-[425px]:text-[1.1rem]" : "span bg-bgColor text-white text-[1.5rem] font-bold px-[15px] py-[5px] transition duration-200 ease-in-out cursor-pointer hover:bg-[#005217] max-[768px]:text-[1.3rem] max-[425px]:text-[1.1rem]"}
                   onClick={() => setIsSignUp(false)}
                 >
                   Log In
                 </span>
               </div>
               <input
-                className="checkbox"
+                className="checkbox hidden"
                 type="checkbox"
                 checked={!isSignUp}
                 readOnly
                 id="check-btn"
               />
-              <label htmlFor="check-btn" onClick={handleAuthSwitch}></label>
-              <div className="card-3d-wrap">
-                <div className="card-3d-wrapper">
+              <label 
+              className="relative block text-center w-[60px] h-[16px] rounded-lg mx-auto my-[20px] bg-[#ffeba7] cursor-pointer before:absolute before:block before:w-[36px] before:h-[36px] before:rounded-full before:bg-[#00a32e] before:text-[#ffeba7] before:content-['\eb4f'] before:z-20 before:top-[-10px] left-[-10px] before:leading-9 before:text-center before:text-[24px] before:font-unicons before:transition-all before:duration-500 before:ease-in-out"
+              htmlFor="check-btn" 
+              onClick={handleAuthSwitch}></label>
+              <div className="card-3d-wrap relative w-[440px] max-w-full h-[640px] mt-4 transform-style-preserve-3d persective-800">
+                <div className="card-3d-wrapper w-full h-full absolute transition-all duration-700 ease-out">
                   {isSignUp ? (
-                    <div className="signup-card">
-                      <div className="center-wrap">
+                    <div className="signup-card w-full h-full absolute overflow-hidden bg-bgColor bg-bgHomeCard border-[1px] border-[rgba(255,255,255,0.125)] rounded-xl max-[425px]:text-center">
+                      <div className="center-wrap absolute w-full px-[35px] top-[50%] left-0 z-20 block">
                         <form
                           onSubmit={handleSubmit(signup)}
-                          className="form-style"
+                          className="form-style flex flex-col justify-center items-center"
                         >
-                          <h2 className="signup-heading text-[40px] font-bold text-white text-center pb-8">
+                          <h2 className="signup-heading text-[2.5rem] font-bold text-white text-center pb-8 max-[1024px]:text-[2.2rem] max-[1024px]:mb-[25px] max-[768px]:text-[2rem]">
                             Sign Up
                           </h2>
-                          <div className="form-group">
+                          <div className="form-group relative block m-0 p-0">
                             <Input
-                              className="register-input"
+                              className="register-input text-white bg-bgInput px-[2.8rem] py-[0.6rem] rounded-[30px] mb-2.5 outline-none border-[1px] border-[rgba(255,255,255,0.175)] focus:border-[#00ff47]"
                               type="text"
                               placeholder="fullname"
                               {...register("fullname", {
@@ -129,16 +132,16 @@ function Signup() {
                                 shouldUnregister: true,
                               })}
                             />
-                            <i className="input-icon uil uil-selfie"></i>
+                            <i className="input-icon uil uil-selfie absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
                             {errors.fullname && (
-                              <p className="error-msg">
+                              <p className="error-msg text-[0.8rem] text-[#00ff47] mt-[-10px] mx-[15px] mb-[5px]">
                                 {errors.fullname.message}
                               </p>
                             )}
                           </div>
-                          <div className="form-group mt-2">
+                          <div className="form-group relative block m-0 p-0">
                             <Input
-                              className="register-input"
+                              className="register-input text-white bg-bgInput px-[2.8rem] py-[0.6rem] rounded-[30px] mb-2.5 outline-none border-[1px] border-[rgba(255,255,255,0.175)] focus:border-[#00ff47]"
                               type="text"
                               placeholder="username"
                               {...register("username", {
@@ -146,16 +149,16 @@ function Signup() {
                                 shouldUnregister: true,
                               })}
                             />
-                            <i className="input-icon uil uil-user"></i>
+                            <i className="input-icon uil uil-user absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
                             {errors.username && (
                               <p className="error-msg">
                                 {errors.username.message}
                               </p>
                             )}
                           </div>
-                          <div className="form-group mt-2">
+                          <div className="form-group relative block m-0 p-0">
                             <Input
-                              className="register-input"
+                              className="register-input text-white bg-bgInput px-[2.8rem] py-[0.6rem] rounded-[30px] mb-2.5 outline-none border-[1px] border-[rgba(255,255,255,0.175)] focus:border-[#00ff47]"
                               type="email"
                               placeholder="email"
                               {...register("email", {
@@ -168,16 +171,16 @@ function Signup() {
                                 shouldUnregister: true,
                               })}
                             />
-                            <i className="input-icon uil uil-at"></i>
+                            <i className="input-icon uil uil-at absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
                             {errors.email && (
                               <p className="error-msg">
                                 {errors.email.message}
                               </p>
                             )}
                           </div>
-                          <div className="form-group mt-2">
+                          <div className="form-group relative block m-0 p-0">
                             <Input
-                              className="register-input"
+                              className="register-input text-white bg-bgInput px-[2.8rem] py-[0.6rem] rounded-[30px] mb-2.5 outline-none border-[1px] border-[rgba(255,255,255,0.175)] focus:border-[#00ff47]"
                               type="password"
                               placeholder="password"
                               {...register("password", {
@@ -196,7 +199,7 @@ function Signup() {
                                 shouldUnregister: true,
                               })}
                             />
-                            <i className="input-icon uil uil-lock"></i>
+                            <i className="input-icon uil uil-lock absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
                           </div>
                           {errors.password && (
                             <p className="error-msg text-center">
@@ -204,10 +207,10 @@ function Signup() {
                             </p>
                           )}
                           <p className="error-msg">{registerMsg}</p>
-                          <Button className="form-btn mt-10 px-10 py-1.5 text-[22px] font-semibold">
+                          <Button className="form-btn w-[50%] mt-10 px-10 py-1.5 text-[22px] font-semibold hover:shadow-signup-login focus:outline-none active:bg-white max-[1024px]:text-[1.1rem] max-[768px]:text-[1.1rem] max-[425px]:p-[8px] max-[425px]:w-[50vw]">
                             Sign Up
                           </Button>
-                          <p className="signup-p text-white text-[1rem] tracking-wide mt-2 mb-14">
+                          <p className="signup-p text-white text-[1rem] tracking-wide mt-2 mb-14 max-[1440px]:text-[0.8rem] max-[1024px]:text-[0.8rem] max-[768px]:text-[0.8rem] max-[425px]:text-[0.9rem]">
                             Already have an account{" "}
                             <span
                               onClick={() => setIsSignUp(false)}
@@ -216,46 +219,46 @@ function Signup() {
                               Login
                             </span>
                           </p>
-                          <Title className="titleImg" />
+                          <Title className="titleImg w-[150px] " />
                         </form>
                       </div>
                     </div>
                   ) : (
                     // ( isClickForgotPassword? (
                     //   <div className="login-card">
-                    //     <div className="center-wrap">
+                    //     <div className="center-wrap absolute w-full px-[35px] top-[50%] left-0 z-20 block">
                     //       <form
                     //         onSubmit={handleSubmit(changePassword)}
-                    //         className="form-style"
+                    //         className="form-style flex flex-col justify-center items-center"
                     //       >
                     //         <h2 className="signup-heading text-[40px] font-bold text-white text-center pb-4">
                     //           Change Password
                     //         </h2>
-                    //         <div className="form-group">
+                    //         <div className="form-group relative block m-0 p-0">
                     //           <Input
-                    //             className="register-input"
+                    //             className="register-input text-white bg-bgInput px-[2.8rem] py-[0.6rem] rounded-[30px] mb-2.5 outline-none border-[1px] border-[rgba(255,255,255,0.175)] focus:border-[#00ff47]"
                     //             type="password"
                     //             placeholder="old password"
                     //             {...register("oldPassword", {
                     //               required: "old password is required",
                     //             })}
                     //           />
-                    //           <i className="input-icon uil uil-lock-alt"></i>
+                    //           <i className="input-icon uil uil-lock-alt absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
                     //           {errors.oldPassword && <p className="error-msg">{errors.oldPassword.message}</p>}
                     //         </div>
-                    //         <div className="form-group mt-2">
+                    //         <div className="form-group relative block m-0 p-0">
                     //           <Input
-                    //             className="register-input password-field"
+                    //             className="register-input password-field text-white bg-bgInput px-[2.8rem] py-[0.6rem] rounded-[30px] mb-2.5 outline-none border-[1px] border-[rgba(255,255,255,0.175)] focus:border-[#00ff47]"
                     //             type="password"
                     //             placeholder="new password"
                     //             {...register("newPassword", {
                     //               required: "new password is required",
                     //             })}
                     //           />
-                    //           <i className="input-icon uil uil-lock-alt"></i>
+                    //           <i className="input-icon uil uil-lock-alt absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
                     //           {errors.newPassword && <p className="error-msg">{errors.newPassword.message}</p>}
                     //         </div>
-                    //         <div className="form-group mt-2">
+                    //         <div className="form-group relative block m-0 p-0">
                     //           <Input
                     //             className="register-input password-field"
                     //             type="password"
@@ -264,58 +267,60 @@ function Signup() {
                     //               required: "confirm password is required",
                     //             })}
                     //           />
-                    //           <i className="input-icon uil uil-lock-alt"></i>
+                    //           <i className="input-icon uil uil-lock-alt absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
                     //           {errors.confirmPassword && <p className="error-msg">{errors.confirmPassword.message}</p>}
                     //         </div>
                     //         {/* {error && (
-                    //           <p className="server-error-msg">
+                    //           <p className="server-error-msg text-[0.8rem] text-[#00ff47] mt-[-5px] mx-[15px] mb-[5px] px-[35px] max-[425px]:text-center max-[425px]:p-0 max-[425px]:mx-[12px] max-[425px]:my-0">
                     //             Invalid Credentials, Please check the username or
                     //             password
                     //           </p>
                     //         )} */}
-                    //         <Button className="form-btn mt-6 px-10 py-1.5 text-[22px] font-semibold">
+                    //         <Button className="form-btn w-[50%] mt-6 px-10 py-1.5 text-[22px] font-semibold hover:shadow-signup-login focus:outline-none active:bg-white">
                     //           Change Password
                     //         </Button>
-                    //         <Title className="titleImg" />
+                    //         <Title className="titleImg w-[150px]" />
                     //       </form>
                     //     </div>
                     //     </div>
                     // ) :
-                    <div className="login-card">
-                      <div className="center-wrap">
+                    <div className="login-card w-full h-full absolute bg-bgColor bg-bgHomeCard border-[1px] border-[rgba(255,255,255,0.125)] rounded-xl">
+                      <div className="center-wrap absolute w-full px-[35px] top-[50%] left-0 z-20 block">
                         <form
                           onSubmit={handleSubmit(loginUser)}
-                          className="form-style"
+                          className="form-style flex flex-col justify-center items-center"
                         >
                           <h2 className="signup-heading text-[40px] font-bold text-white text-center pb-4">
                             Log In
                           </h2>
-                          <div className="form-group">
+                          <div className="form-group relative block m-0 p-0">
                             <Input
-                              className="register-input"
+                              className="register-input text-white bg-bgInput px-[2.8rem] py-[0.6rem] rounded-[30px] mb-2.5 outline-none border-[1px] border-[rgba(255,255,255,0.175)] focus:border-[#00ff47]"
                               type="text"
                               placeholder="username"
                               {...register("username", {
                                 required: "username is required",
                               })}
                             />
-                            <i className="input-icon uil uil-at"></i>
+                            <i className="input-icon uil uil-at absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
                             {errors.username && (
                               <p className="error-msg">
                                 {errors.username.message}
                               </p>
                             )}
                           </div>
-                          <div className="form-group mt-2">
+                          <div className="form-group relative block m-0 p-0">
                             <Input
-                              className="register-input password-field"
+                              className="register-input text-white bg-bgInput px-[2.8rem] py-[0.6rem] rounded-[30px] mb-2.5 outline-none border-[1px] border-[rgba(255,255,255,0.175)] focus:border-[#00ff47]"
                               type="password"
                               placeholder="password"
                               {...register("password", {
                                 required: "password is required",
                               })}
                             />
-                            <i className="input-icon uil uil-lock-alt"></i>
+                            <i 
+                            className="input-icon uil uil-lock-alt absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear">
+                            </i>
                           </div>
                           {errors.password && (
                             <p className="error-msg">
@@ -323,15 +328,15 @@ function Signup() {
                             </p>
                           )}
                           {error && (
-                            <p className="server-error-msg">
+                            <p className="server-error-msg text-[0.8rem] text-[#00ff47] mt-[-5px] mx-[15px] mb-[5px] px-[35px] max-[425px]:text-center max-[425px]:p-0 max-[425px]:mx-[12px] max-[425px]:my-0">
                               Invalid Credentials, Please check the username or
                               password
                             </p>
                           )}
-                          <Button className="form-btn mt-6 px-10 py-1.5 text-[22px] font-semibold">
+                          <Button className="form-btn w-[50%] mt-6 px-10 py-1.5 text-[22px] font-semibold hover:shadow-signup-login focus:outline-none active:bg-white">
                             Login
                           </Button>
-                          <p className="login-p text-white text-[1rem] tracking-wide mt-2 mb-14">
+                          <p className="login-p text-white text-[1rem] tracking-wide mt-2 mb-14 max-[1440px]:text-[0.8rem] max-[425px]:text-[0.9rem]">
                             Don&#39;t have an account{" "}
                             <span
                               onClick={() => setIsSignUp(true)}
@@ -340,7 +345,7 @@ function Signup() {
                               Sign Up
                             </span>
                           </p>
-                          <Title className="titleImg" />
+                          <Title className="titleImg w-[150px]" />
                         </form>
                       </div>
                     </div>
