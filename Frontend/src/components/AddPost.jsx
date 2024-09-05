@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Navbar, Title, Logo, User, Input, Button } from "./index";
 import { UploadPost, UploadImg } from "../assets/Asset";
-import "./CSS/AddPost.css";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";

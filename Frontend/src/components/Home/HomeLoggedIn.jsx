@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HomeLoggedInImg } from "../../assets/Asset";
 import { Title } from "../index";
-import "../CSS/HomeLoggedIn.css";
 import { useDispatch, useSelector } from 'react-redux'
 import axios from "axios";
 
@@ -36,29 +35,20 @@ export default function HomeLoggedIn() {
 
   return (
     <>
-      <div className="HomeLoggedIn-main-container ">
-        <div className="HomeLoggedIn-container-right">
-          <div className="img-container">
+      <div className="HomeLoggedIn-main-container flex w-full h-screen bg-bgColor bg-bgGradient-color overflow-hidden">
+        <div className="HomeLoggedIn-container-right flex flex-col justify-center items-center w-full h-full">
+          <div className="img-container w-[35vw] max-[1024px]:w-[45vw] max-[768px]:w-[55vw] max-[425px]:w-[80vw]">
             <img src={HomeLoggedInImg} alt="main-homePage-welcome-img" />
           </div>
-          <div className="content-container">
+          <div className="content-container flex flex-col justify-center items-center mt-[50px] max-[1440px]:mt-[40px]">
             <div className="welcome-container">
-              <p>{userData.username}</p>
-              <h1>WELCOME TO</h1>
+              <p className="w-max bg-[#00ed43b1] text-white text-[1.4rem] font-bold tracking-[0.5px] mb-[-16px] px-2.5 rounded-md shadow-[1px_1px_20px_2px_#00ff4849] max-[1440px]:text-[1.3rem] max-[1440px]:mb-[-8px] max-[1024px]:text-[1.2rem] max-[768px]:text-[0.9rem] max-[768px]:mb-0">{userData.username}</p>
+              <h1 className="text-[6rem] font-semibold text-white mb-0 max-[1440px]:text-[4.2rem] max-[768px]:text-[3.4rem] max-[425px]:text-[2.7rem]">WELCOME TO</h1>
             </div>
-            <Title className="title-img" />
+            <Title className="title-img w-[42rem] max-[1440px]:w-[29rem] max-[1024px]:w-[28rem] max-[768px]:w-[23rem] max-[425px]:w-[18rem]" />
           </div>
         </div>
       </div>
-
-      {/* <div className="home-main-container">
-        <div className="home-container-left">
-          <Navbar />
-        </div>
-        <div className="home-container-right">
-            <PostCard />
-        </div>
-      </div> */}
     </>
   );
 }

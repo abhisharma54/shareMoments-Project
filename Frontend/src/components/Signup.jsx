@@ -81,12 +81,12 @@ function Signup() {
           <p className="text-center px-5 font-custom-font text-2xl text-white font-semibold tracking-wider max-[768px]:text-lg max-[425px]:text-base">{error}</p>
         </div>
        ) : (
-        <div>
-         <div className={registerMsg? "absolute z-10 w-full" : "hidden"}>
+        <div className={registerMsg? " flex justify-center items-center" : null}>
+        <div className={registerMsg? "absolute z-10" : "hidden"}>
          <MessageCard onButtonClick={handleRegisterMsg}/>
        </div>
-       <div className={registerMsg? "flex justify-center items-center gap-[30px] px-[40px] blur-md" : "signup-container flex justify-center items-center gap-[30px] px-[40px] max-[1440px]:w-full max-[1440px]:h-full max-[1440px]:gap-0 max-[1024px]:gap-[10px] max-[768px]:px-[120px]"}>
-         <div className="signup-container-left flex justify-center items-center w-[40vw] px-[30px] max-[1024px]:w-[60vw] max-[425px]:text-center max-[425px]:p-0 max-[425px]:mx-[12px] max-[768px]:hidden">
+       <div className={registerMsg? "flex justify-center items-center blur-md" : "signup-container flex justify-center items-center gap-[30px] px-[40px] max-[1440px]:w-full max-[1440px]:h-full max-[1440px]:gap-0 max-[1024px]:gap-[10px] max-[768px]:px-[120px]"}>
+         <div className="signup-container-left flex justify-center items-center w-[40vw] px-[30px] max-[425px]:text-center max-[425px]:p-0 max-[425px]:mx-[12px] max-[768px]:hidden">
            <img className="mix-blend-hard-light w-full h-full object-contain" src={SignupImg} alt="signup-page-img" />
          </div>
          <div className="signup-container-right flex justify-center items-center w-[50vw]">

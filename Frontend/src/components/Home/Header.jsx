@@ -10,7 +10,7 @@ function Header({ className = "", ...props }) {
 
   return (
     <>
-      <div className="flex flex-col w-full h-screen">
+      <div className="flex flex-col w-full h-screen overflow-hidden">
         <div className="header flex justify-between items-center bg-bgColor bg-bgHeader-color px-4 py-2.5 max-[425px]:justify-center max-[425px]:gap-12 max-[425px]:px-0">
           <Link to="/">
             <Logo className="header-logo w-[50px] max-[1440px]:w-[3.5vw] max-[1024px]:w-[4.5vw] max-[768px]:w-[6vw] max-[425px]:w-[10vw]" />
@@ -34,7 +34,7 @@ function Header({ className = "", ...props }) {
             <div></div>
           )}
         </div>
-        <main className="w-full h-full">
+        <main className="w-full h-full overflow-hidden">
           <Outlet />
         </main>
       </div>

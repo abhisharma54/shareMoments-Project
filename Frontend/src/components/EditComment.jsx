@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Title, Button } from "./index";
-import "./CSS/EditPostCard.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -57,7 +56,7 @@ export default function EditPostCard() {
 
   return (
     <>
-      <div className="editPost-main-container">
+      <div className="editComment-main-container flex justify-center items-center w-full h-screen text-white bg-bgColor bg-bgGradient-color font-custom-font cursor-pointer max-[425px]:px-[2rem]">
         {loading ? (
           <h1 className="text-3xl text-center text-[#00ff47] font-semibold">
             Loading editComment page...
@@ -69,18 +68,20 @@ export default function EditPostCard() {
         ) : (
           <form
             onSubmit={handleSubmit(editComment)}
-            className="editPost-container"
+            className="editComment-container flex flex-col justify-center items-center w-[30vw] gap-5 px-[2rem] py-[3rem] rounded-[20px] bg-[rgba(17,25,40,0.39)] border-[1px] border-[rgba(255,255,255,0.175)] overflow-hidden max-[1440px]:w-[40vw] max-[1024px]:w-[50vw] max-[425px]:w-[100vw]"
           >
-            <i
-              onClick={() =>
-                navigate(`/navbar/profile/${userDetails?.username}/getAllComment/${postId}`)
-              }
-              className="cancel-editProfile uil uil-multiply"
-            ></i>
-            <h1 className="text-[#00ff47] edit-heading">Edit Comment</h1>
+            <div className="editPost-header flex justify-end w-full my-[-2rem]">
+              <i
+                onClick={() =>
+                  navigate(`/navbar/profile/${userDetails?.username}`)
+                }
+                className="cancel-editPost uil uil-multiply text-[2.2rem] cursor-pointer transition duration-150 ease-in-out hover:text-[rgb(218,58,58)] active:text-[#00ff47] hover:[text-shadow:_0_0_30px_rgb(255_0_0)]"
+              ></i>
+            </div>
+            <h1 className="text-[#00ff47] text-3xl font-semibold">Edit Comment</h1>
 
             <textarea
-              className="editPost-textarea"
+              className="editComment-textarea w-full h-[120px] px-[15px] py-[8px] text-[1rem] rounded-[15px] bg-[#2020208d] resize-none border-[1px] border-[rgba(52,248,121,0.18)] focus:outline-none focus:border-[#00ff47]"
               type="text"
               placeholder="comment..."
               {...register("newComment", {
@@ -89,10 +90,10 @@ export default function EditPostCard() {
             />
 
             {errors.comment && (
-              <p className="error-msg">{errors.comment.message}</p>
+              <p className="error-msg text-base text-[#00ff47] [text-shadow:_0_0_30px_#00ff47]">{errors.comment.message}</p>
             )}
-            {error && <p className="error-msg">{error}</p>}
-            <Button className="editPost-saveBtn">
+            {error && <p className="error-msg [text-shadow:_0_0_30px_#00ff47]">{error}</p>}
+            <Button className="editComment-saveBtn w-[8vw] text-[1rem] text-nowrap mt-[20px] transition duration-200 ease-in-out hover:shadow-signup-login focus:outline-none active:bg-white max-[1440px]:w-[10vw] max-[1024px]:w-[15vw] max-[768px]:w-[20vw] max-[425px]:w-full">
               {isUpdating
                 ? "Updating..."
                 : updateSuccess

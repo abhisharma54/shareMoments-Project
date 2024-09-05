@@ -29,7 +29,8 @@ export default {
       boxShadow: {
         'logoutBtn': '1px 1px 10px 2px rgba(255,0,0,0.607)',
         'signup-login': '1px 1px 20px 2px #00ff4849',
-        'uploadBtn': '4px 1px 10px 0px black'
+        'uploadBtn': '4px 1px 10px 0px black',
+        'commentBtn': '1px 1px 10px 2px #00ff4849'
       },
       transformStyle: {
         'preserve-3d': 'preserve-3d'

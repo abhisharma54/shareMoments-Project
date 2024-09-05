@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Input, Title, Button } from "./index";
-import "./CSS/EditProfile.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -122,42 +121,42 @@ function EditProfile() {
 
   return (
     <>
-      <div className="editProfile-main-container">
+      <div className="editProfile-main-container flex justify-center items-center w-full h-screen text-white font-custom-font bg-bgColor bg-bgGradient-color overflow-hidden max-[425px]:px-[2rem]">
         <form
           onSubmit={handleSubmit(updateProfile)}
-          className="editProfile-container"
+          className="editProfile-container flex flex-col justify-center items-center gap-[20px] w-[50vw] rounded-[20px] px-[2rem] py-[3rem] bg-[rgba(17,25,40,0.39)] border-[1px] border-[rgba(255,255,255,0.175)] overflow-hidden max-[1024px]:w-[60vw] max-[768px]:h-[90vh] max-[425px]:w-full"
         >
-          <div className="editProfile-header">
+          <div className="editProfile-header flex justify-end w-full mb-[-3.8rem] max-[768px]:mb-[-3rem]">
             <i
               onClick={() =>
                 navigate(`/navbar/profile/${userDetails?.username}`)
               }
-              className="cancel-editProfile uil uil-multiply"
+              className="cancel-editProfile uil uil-multiply text-[2rem] font-extralight text-white cursor-pointer transition duration-150 ease-in-out hover:text-[rgb(218,58,58)] hover:[text-shadow:_0_0_30px_rgb(255_0_0)] active:text-[#00ff47] max-[425px]:mt-[-2.5rem] max-[425px]:mb-[1rem]"
             ></i>
           </div>
-          <h1 className="text-[#00ff47] font-semibold">Edit Profile</h1>
-          <div className="editAvatar">
+          <h1 className="text-[#00ff47] text-[2rem] font-semibold max-[768px]:text-[1.8rem] max-[425px]:text-[1.6rem] max-[425px]:mb-0">Edit Profile</h1>
+          <div className="editAvatar flex flex-col items-center border-2 border-[rgba(255,255,255,0.175)] rounded-full mb-[-15px]">
             <img
               onClick={() => avatarInputRef.current.click()}
-              className="editUserAvatar"
+              className="editUserAvatar w-[100px] h-[100px] bg-[#003e12] rounded-full shadow-2xl object-cover hover:opacity-80 cursor-pointer max-[768px]:w-[80px] max-[768px]:h-[80px] max-[425px]:w-[100px] max-[425px]:h-[100px]"
               src={avatarPreview || (userDetails && userDetails.avatar?.url)}
               title="update-avatar"
               alt="update-avatar"
             />
-            <p>Update Avatar</p>
             <Input
-              className="editProfile-input hidden"
+              className="hidden"
               type="file"
               {...register("avatar")}
               ref={avatarInputRef}
               onChange={handleFileChange}
             />
           </div>
+            <p className="mb-0">Update Avatar</p>
 
-          <div className="editCoverImage">
+          <div className="editCoverImage w-full border-2 border-[rgba(255,255,255,0.175)] rounded-[20px] mb-[-20px]">
             <img
               onClick={() => coverImageInputRef.current.click()}
-              className="editUserCoverImage"
+              className="editUserCoverImage w-full h-[150px] bg-[#003e12] rounded-[20px] shadow-2xl object-cover hover:opacity-80 cursor-pointer max-[425px]:h-[120px]"
               src={
                 coverImagePreview ||
                 (userDetails && userDetails.coverImage?.url)
@@ -165,43 +164,43 @@ function EditProfile() {
               title="update-coverImage"
               alt="update-coverImage"
             />
-            <p>Update Cover Image</p>
             <Input
-              className="editProfile-input hidden"
+              className="hidden"
               type="file"
               {...register("coverImage")}
               ref={coverImageInputRef}
               onChange={handleFileChange}
             />
           </div>
+            <p className="text-center font-medium mt-[8px] mb-0">Update Cover Image</p>
 
           <Input
-            className="editProfile-input"
+            className="editProfile-input w-full rounded-[20px] px-[20px] py-[8px] bg-[rgba(17,25,40,0.39)] border-[1px] border-[rgba(255,255,255,0.175)] focus:outline-none focus:border-[#00ff47]"
             type="text"
             placeholder="fullname"
             {...register("fullname")}
           />
           <Input
-            className="editProfile-input"
+            className="editProfile-input w-full rounded-[20px] px-[20px] py-[8px] bg-[rgba(17,25,40,0.39)] border-[1px] border-[rgba(255,255,255,0.175)] focus:outline-none focus:border-[#00ff47]"
             type="text"
             placeholder="username"
             {...register("username")}
           />
           <Input
-            className="editProfile-input"
+            className="editProfile-input w-full rounded-[20px] px-[20px] py-[8px] bg-[rgba(17,25,40,0.39)] border-[1px] border-[rgba(255,255,255,0.175)] focus:outline-none focus:border-[#00ff47]"
             type="text"
             placeholder="bio"
             {...register("bio")}
           />
           {error && <p className="error-msg">{error}</p>}
-          <Button className="editProfile-saveBtn">
+          <Button className="editProfile-saveBtn w-[8vw] text-[1rem] transition duration-200 ease-in-out hover:shadow-signup-login focus:outline-none active:bg-white max-[1440px]:w-[10vw] max-[1024px]:w-[15vw] max-[768px]:w-[20vw] max-[425px]:w-[40vw]">
             {isUpdating
               ? "Updating..."
               : updateSuccess
               ? "Updated Successfully"
               : "Save"}
           </Button>
-          <Title className="edit-titleImg" />
+          <Title className="edit-titleImg w-[150px] mt-[3rem] max-[768px]:mt-[2rem]" />
         </form>
       </div>
     </>

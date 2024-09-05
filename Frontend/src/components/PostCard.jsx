@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { User } from "./index";
 import { PostOptions, UnlikeImg, CommentImg, LikedImg } from "../assets/Asset";
-import "./CSS/PostCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { post } from "../store/postSlice";
 import { Link } from "react-router-dom";
@@ -116,7 +115,7 @@ function PostCard() {
       )}
 
       {postData.length === 0 ? (
-        <p className="no-post-msg text-[1.4rem] font-semibold tracking-wide text-center mt-8 text-[#00ff47] shadow-[1px 1px 20px #00cd3a]">{loading? "Loading posts page..." : "No Post Available"}</p>
+        <p className="no-post-msg text-[1.4rem] font-semibold tracking-wide text-center mt-8 text-[#00ff47] [text-shadow:_0_0_30px_#00ff47]">{loading? "Loading posts page..." : "No Post Available"}</p>
       ) : (
         postData.map((post) => (
           <div className="post-main-container w-full flex flex-col px-4 py-4 bg-[rgba(17,25,40,0.59)] overflow-hidden border-[1px] border-custom-border text-white font-custom-font rounded-3xl mt-[10px] max-[425px]:py-3" key={post._id}>
@@ -136,17 +135,19 @@ function PostCard() {
                   alt="post-options"
                 />
                 {post.showEdit && (
-                  <div className="editPostOption-container" ref={editPostRef}>
-                    <ul className="showEditOption text-[1.2rem] max-[768px]:text-[1rem]">
-                      <li>
+                  <div className="editPostOption-container flex absolute top-[35px] right-[-2px] text-[1.8rem] font-medium transition duration-200 ease-in-out before:hidden max-[1440px]:top-[25px] max-[1440px]:right-[-12px] max-[768px]:top-[22px] max-[768px]:right-[-3px]" ref={editPostRef}>
+                    <ul className="showEditOption list-none text-[1.2rem] px-[15px] py-[4px] rounded-[10px] bg-[rgb(17,25,40)] border-[1px] border-[rgb(255,255,255,0.175)] before:absolute before:top-[-5.5px] before:right-[15px] before:w-[12px] before:h-[12px] before:rotate-[45deg] before:bg-[rgb(17,25,40)] before:border-[1px] before:border-l-[rgba(255,255,255,0.175)] before:border-t-[rgba(255,255,255,0.175)] before:border-r-transparent before:border-b-transparent before:transition before:duration-200 before:ease-in-out max-[768px]:text-[1rem]">
+                      <li >
                         <Link
-                          className="editPostBtn"
+                          className="editPostBtn text-nowrap text-[rgb(33,122,255)] hover:no-underline max-[1440px]:text-[1.2rem] max-[1024px]:text-[1rem]"
                           to={`editPostCard/${post._id}`}
                         >
                           Edit
                         </Link>
                       </li>
-                      <li onClick={() => deletePost(post._id)}>
+                      <li 
+                      className="hover:text-[rgb(255,0,0)] max-[1440px]:text-[1.2rem] max-[1024px]:text-[1rem]"
+                      onClick={() => deletePost(post._id)}>
                         {isDeleting
                           ? "Deleting..."
                           : deleteSuccess

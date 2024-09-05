@@ -143,7 +143,7 @@ function Navbar() {
                   alt="logout-icon"
                   className="w-[1.6vw] max-[1440px]:w-[1.4vw] max-[1024px]:w-[1.8vw] max-[768px]:w-[3vw] max-[425px]:w-[5.5vw]"
                    />
-                <p className="text-[1rem] max-[1024px]:text-[0.9rem] max-[768px]:hidden max-[425px]:block max-[425px]:text-[1rem]">Logout</p>
+                <p className="text-[1rem] mb-0 max-[1024px]:text-[0.9rem] max-[768px]:hidden max-[425px]:block max-[425px]:text-[1rem]">Logout</p>
               </button>
               {/* <button className="profile-container">
                 <img
