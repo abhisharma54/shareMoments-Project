@@ -1,32 +1,16 @@
-// ErrorBoundary.js
-import React from 'react';
+import React from 'react'
+import Button from './Button';
+import { useNavigate } from 'react-router-dom';
 
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
+function ErrorBoundary() {
+  const navigate = useNavigate();
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    console.error('Error caught by ErrorBoundary:', error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div>
-          <h1>Something went wrong.</h1>
-          <p>We're sorry, but something went wrong.</p>
-        </div>
-      );
-    }
-
-    return this.props.children;
-  }
+  return (
+    <div className='w-full h-screen flex flex-col gap-2 justify-center items-center bg-bgColor bg-bgNavbar-color'>
+      <h1 className='text-white max-[768px]:text-[2rem] max-[425px]:text-[1.5rem]'>404 | Page Not Found</h1>
+      <Button onClick={() => navigate('/navbar/home')} className='w-[12rem] font-bold text-nowrap shadow-2xl transition duration-100 ease-linear focus:bg-white focus:text-black focus:outline-none hover:bg-bgColor hover:text-white'>Go to Home Page</Button>
+    </div>
+  );
 }
 
-export default ErrorBoundary;
+export default ErrorBoundary

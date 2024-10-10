@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { UserAvatar } from "../../assets/Asset";
+import React from "react";
+import { UserAvatar } from "../assets/Asset";
 
 function User({
   className="",

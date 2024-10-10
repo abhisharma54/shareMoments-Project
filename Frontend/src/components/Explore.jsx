@@ -73,8 +73,8 @@ function Explore() {
 
   return (
     <div className="explore-main-container w-full h-screen text-white font-custom-font bg-bgColor bg-bgGradient-color flex overflow-hidden">
-      <div className="explore-container w-full overflow-y-scroll px-[9vw] scrollbar-none max-[425px]:px-5">
-        <div className="explore-bg w-full min-h-[100%] border-s-[rgba(255,255,255,0.275)] bg-[rgba(17,25,40,0.59)] rounded-3xl my-[10px] mx-0 px-[40px] py-[20px] overflow-hidden max-[425px]:px-[15px]">
+      <div className="explore-container w-full flex justify-center overflow-y-scroll px-[9vw] scrollbar-none max-[768px]:px-5 max-[425px]:px-5">
+        <div className="explore-bg max-w-[50rem] min-h-max border-s-[rgba(255,255,255,0.275)] bg-[rgba(17,25,40,0.59)] rounded-3xl my-[10px] mx-0 px-[40px] py-[20px] overflow-hidden max-[1440px]:w-[45rem] max-[1024px]:w-[40rem] max-[768px]:w-[80vw] max-[425px]:w-full max-[425px]:px-5">
           {allPosts.length === 0 ? (
             <p className="no-post-msg">
               {loading ? "Loading Explore page..." : "No Post Available"}
@@ -82,7 +82,7 @@ function Explore() {
           ) : (
             allPosts.map((post) => (
               <div
-                className="post-main-container  w-full flex flex-col px-4 py-4 bg-[rgba(17,25,40,0.59)] overflow-hidden border-[1px] border-custom-border text-white font-custom-font rounded-3xl mt-[10px] max-[425px]:py-3"
+                className="post-main-container w-full flex flex-col px-4 py-4 bg-[rgba(17,25,40,0.59)] overflow-hidden border-[1px] border-custom-border text-white font-custom-font rounded-3xl mt-[10px] max-[425px]:py-3"
                 key={post._id}
               >
                 <div className="post-user flex justify-between">
@@ -102,13 +102,13 @@ function Explore() {
                     />
                     {post.showEdit && (
                       <div
-                        className="editPostOption-container"
+                        className="editPostOption-container flex absolute top-[35px] right-[-2px] text-[1.8rem] font-medium transition duration-200 ease-in-out before:hidden max-[1440px]:top-[25px] max-[1440px]:right-[-12px] max-[768px]:top-[22px] max-[768px]:right-[-3px]"
                         ref={editPostRef}
                       >
-                        <ul className="showEditOption text-[1.2rem] max-[768px]:text-[1rem]">
+                        <ul className="showEditOption list-none text-[1.2rem] px-[15px] py-[4px] rounded-[10px] bg-[rgb(17,25,40)] border-[1px] border-[rgb(255,255,255,0.175)] before:absolute before:top-[-5.5px] before:right-[15px] before:w-[12px] before:h-[12px] before:rotate-[45deg] before:bg-[rgb(17,25,40)] before:border-[1px] before:border-l-[rgba(255,255,255,0.175)] before:border-t-[rgba(255,255,255,0.175)] before:border-r-transparent before:border-b-transparent before:transition before:duration-200 before:ease-in-out max-[768px]:text-[1rem]">
                           <Link
                             to={`/navbar/profile/${userDetails?.username}`}
-                            className="editPostBtn text-nowrap"
+                            className="editPostBtn text-nowrap text-[#00ff47] hover:no-underline hover:text-blue-500 max-[1440px]:text-[1.2rem] max-[1024px]:text-[1rem]"
                           >
                             Go Profile
                           </Link>
@@ -143,7 +143,7 @@ function Explore() {
                         onClick={() => likePost(post._id)}
                       >
                         <img
-                          className="w-[2.5vw] transition-all duration-300 ease-in-out active:scale-[1.4] max-[1440px]:w-[2.7vw] max-[1024px]:w-[3.5vw] max-[768px]:w-[4.5vw] max-[425px]:w-[7.4vw]"
+                          className="w-[2.5vw] transition-all duration-300 ease-in-out active:scale-[1.4] max-[1440px]:w-[2.7vw] max-[1024px]:w-[3.5vw] max-[768px]:w-[2.5rem] max-[425px]:w-[7.4vw]"
                           src={post.isLiked ? LikedImg : UnlikeImg}
                           alt="like-status"
                         />
@@ -153,7 +153,7 @@ function Explore() {
                     <div title="comment" className="comments flex items-center gap-3">
                       <Link to={`getAllCommment/${post._id}`}>
                         <img 
-                        className="w-[2.5vw] transition-all duration-300 ease-in-out active:scale-[1.4] max-[1440px]:w-[2.7vw] max-[1024px]:w-[3.5vw] max-[768px]:w-[4.2vw] max-[425px]:w-[6.8vw]"
+                        className="w-[2.5vw] transition-all duration-300 ease-in-out active:scale-[1.4] max-[1440px]:w-[2.7vw] max-[1024px]:w-[3.5vw] max-[768px]:w-[2rem] max-[425px]:w-[6.8vw]"
                         src={CommentImg} 
                         alt="comments" />
                       </Link>
@@ -164,7 +164,7 @@ function Explore() {
                     to={`getAllComment/${post._id}`}
                     className="allComment-container  w-full flex flex-col py-4 px-2.5 rounded-xl bg-[rgba(17,25,40)] border-[1px] border-custom-border transition duration-150 ease-in-out hover:no-underline hover:bg-black"
                   >
-                    <p>Comments</p>
+                    <p className="text-white text-lg font-medium max-[768px]:text-base max-[425px]:text-[0.95rem]">Comments</p>
                   </Link>
                 </div>
               </div>

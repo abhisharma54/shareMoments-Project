@@ -23,29 +23,13 @@ function Navbar() {
   const authStatus = useSelector(state => state.users.status);
   const userDetails = useSelector(state => state.users.userData);
 
-  console.log("navbar :: ", authStatus);
-  
-
   const navbarRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleClickOutside = (e) => {
-    if (navbarRef.current && !navbarRef.current.contains(e.target)) {
-      setMenuOpen(false);
-    }
-  };
-
   const handleLinkClick = () => {
     setMenuOpen(false);
   };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
   const logoutHandle = async () => {
     try {
@@ -101,18 +85,18 @@ function Navbar() {
 
   return (
     <>
-      <Link to="#" title="menu-bar" className="menu-bar absolute top-0 right-0 w-[6vw] m-[20px] hidden cursor-pointer transition duration-200 ease-in-out hover:scale-[1.2] max-[425px]:block" onClick={() => setMenuOpen(prev => !prev)}>
+      <Link to="#" title="menu-bar" className="menu-bar bg-bgInput absolute top-8 right-8 w-[6vw] hidden cursor-pointer transition duration-200 ease-in-out hover:scale-[1.2] max-[768px]:block max-[768px]:w-[2.2rem] max-[425px]:w-[2rem]" onClick={() => setMenuOpen(prev => !prev)}>
         <img src={Menu} alt="menu-icon" />
       </Link>
       <div className="navbar-main-container w-full h-screen flex font-custom-font bg-bgColor bg-bgNavbar-color overflow-hidden">
-        <div className={menuOpen ? "menuOpen flex flex-col items-center w-[12vw] h-full p-[20px] bg-bgColor bg-bgNavbar-color transition duration-200 ease-in-out max-[425px]:w-[50vw] max-[425px]:h-full max-[425px]:absolute max-[425px]:left-0 max-[425px]:z-10" : "navbar-container flex flex-col items-center w-[12vw] h-full p-[20px] transition duration-200 ease-in-out max-[1440px]:w-[14vw] max-[1024px]:w-[19vw] max-[768px]:w-[22vw] max-[768px]:my-[30px] max-[425px]:absolute max-[425px]:left-[-100%] max-[425px]:right-0"} ref={navbarRef}>
+        <div className={menuOpen ? "menuOpen p-[20px] bg-bgColor bg-bgNavbar-color transition duration-200 ease-linear overflow-hidden max-[768px]:w-[30vw] max-[600px]:w-[40vw] max-[425px]:w-[50vw] max-[768px]:h-full max-[768px]:absolute max-[768px]:left-0 max-[768px]:z-10" : "navbar-container flex flex-col items-center w-[12vw] h-full p-[20px] border-r-[0.5px] border-opacity-20 border-r-[#00b83439] transition-all duration-200 ease-linear max-[1440px]:w-[16vw] max-[1024px]:w-[80px] max-[768px]:absolute max-[768px]:-left-[100%] max-[768px]:-translate-x-[100%]"} ref={navbarRef}>
           <Link 
           to="home" 
-          className="upper-container flex items-center gap-1.5 w-[11vw] transition duration-150 ease-in-out cursor-pointer hover:scale-[1.05] max-[768px]:justify-center max-[425px]:m-auto max-[425px]:w-[40vw]"
+          className="upper-container flex items-center gap-1.5 w-[11vw] transition duration-150 ease-in-out cursor-pointer hover:scale-[1.05] max-[1024px]:justify-center max-[768px]:m-auto max-[768px]:w-[22vw] max-[425px]:w-[40vw]"
           onClick={handleLinkClick}
           >
-            <Logo className="navbar-logo w-[50px] max-[768px]:w-[6vw] max-[425px]:w-[9vw]" />
-            <Title className="navbar-title w-[220px] max-[768px]:hidden max-[425px]:block" />
+            <Logo className="navbar-logo w-[50px] max-[1024px]:w-[50px] max-[425px]:w-[9vw]" />
+            <Title className="navbar-title w-[220px] max-[1024px]:hidden max-[768px]:block" />
           </Link>
 
           <div className="lower-container h-full flex flex-col justify-between max-[768px]:items-center max-[768px]:mt-[-20px]">
@@ -123,9 +107,9 @@ function Navbar() {
                     <NavLink 
                     to={item.path} 
                     onClick={handleLinkClick} 
-                    className="navLink-container-links flex items-center gap-1.5 mb-[35px] cursor-pointer transition duration-150 ease-in-out hover:no-underline hover:scale-[1.05] max-[1440px]:ml-2.5 max-[1024px]:mb-[1.4rem] ">
-                      <img src={item.icon} alt="navLink-icon" className="links-img w-[1.6vw] max-[1024px]:w-[2.1vw] max-[768px]:w-[2.5vw] max-[425px]:w-[5vw]" />
-                      <h1 className="font-custom-font font-bold text-[1.3rem] tracking-wider ml-[5px] mb-0 text-white transition duration-200 ease-in-out text-nowrap pr-3 hover:text-[#00ff47] max-[1440px]:text-[1.1rem] max-[1024px]:text-[1rem] max-[425px]:text-[1.2rem]">{item.name}</h1>
+                    className={({isActive}) => `navLink-container-links flex items-center gap-1.5 mb-[35px] ${isActive? "text-[#00ff47]": "text-white"} hover:text-[#00ff47] cursor-pointer transition duration-150 ease-in-out hover:no-underline hover:scale-[1.05] max-[1024px]:mb-[2rem] max-[1024px]:justify-center max-[768px]:justify-normal`}>
+                      <img src={item.icon} alt="navLink-icon" className="links-img w-[1.6vw] max-[1440px]:w-[28px] max-[1024px]:w-[28px] max-[425px]:w-[5vw]" />
+                      <h1 className="font-custom-font font-bold text-[1.3rem] tracking-wider ml-[5px] mb-0 transition duration-200 ease-in-out text-nowrap pr-3 hover:no-underline hover:text-[#00ff47] max-[1440px]:text-[1.1rem] max-[1024px]:hidden max-[768px]:block max-[768px]:text-[1.2rem]">{item.name}</h1>
                     </NavLink>
                   </li>
                 )
@@ -135,29 +119,30 @@ function Navbar() {
             <div className="btn-wrapper flex flex-col justify-center">
               <button 
               onClick={logoutHandle}
-              className="logoutBtn w-full flex justify-center items-center gap-2.5 px-[5px] py-[10px] font-custom-font font-semibold rounded-full bg-[rgba(255,0,0,0.81)] text-white mb-[1.2rem] transition duration-200 ease-in-out hover:shadow-logoutBtn max-[1024px]:p-2.5"
+              className="logoutBtn w-full flex justify-center items-center gap-2.5 px-[5px] py-[10px] font-custom-font font-semibold rounded-full bg-[rgba(255,0,0,0.81)] text-white mb-[1.2rem] transition duration-200 ease-in-out hover:shadow-logoutBtn max-[1024px]:p-2"
               >
                 <img 
                   src={logoutIcon} 
                   title="logout-icon" 
                   alt="logout-icon"
-                  className="w-[1.6vw] max-[1440px]:w-[1.4vw] max-[1024px]:w-[1.8vw] max-[768px]:w-[3vw] max-[425px]:w-[5.5vw]"
+                  className="w-[1.6vw] max-[1440px]:w-[20px] max-[1024px]:w-[28px]"
                    />
-                <p className="text-[1rem] mb-0 max-[1024px]:text-[0.9rem] max-[768px]:hidden max-[425px]:block max-[425px]:text-[1rem]">Logout</p>
+                <p className="text-[1rem] mb-0 max-[1024px]:hidden max-[768px]:block">Logout</p>
               </button>
-              {/* <button className="profile-container">
+              {/* <button 
+              className="profile-container w-full flex justify-center items-center gap-2.5 px-[5px] py-[10px] font-custom-font font-semibold rounded-full bg-[#06a634] text-white mb-[1.2rem] transition duration-200 ease-in-out hover:shadow-logoutBtn max-[1024px]:p-2">
                 <img
-                  className="userAvatar"
+                  className="userAvatar w-[1.6vw] rounded-full max-[1440px]:w-[1.4vw] max-[1024px]:w-[28px] max-[768px]:w-[3vw] max-[425px]:w-[5.5vw]"
                   src={userDetails && userDetails.avatar?.url || UserAvatar}
                   title="userAvatar"
                   alt="user-avatar-img"/>
-                <p>{userDetails && userDetails.username}</p>
+                <p className="text-[0.8rem] mb-0 max-[1024px]:hidden max-[425px]:block max-[425px]:text-[0.8rem]">{userDetails && userDetails.username}</p>
               </button> */}
             </div>
           </div>
         </div>
 
-        <main className="w-full h-full">
+        <main onClick={handleLinkClick} className="w-full h-full">
           <Outlet />
         </main>
       </div>

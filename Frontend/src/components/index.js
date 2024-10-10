@@ -9,7 +9,7 @@ import HomeLogged from "./Home/HomeLogged";
 import HomeLoggedIn from "./Home/HomeLoggedIn";
 import About from './About'
 import AddPost from "./AddPost";
-import User from "./Home/User";
+import User from "./User";
 import PostCard from "./PostCard";
 import CommentCard from './Comment'
 import Profile from './Profile'

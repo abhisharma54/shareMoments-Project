@@ -115,7 +115,7 @@ function PostCard() {
       )}
 
       {postData.length === 0 ? (
-        <p className="no-post-msg text-[1.4rem] font-semibold tracking-wide text-center mt-8 text-[#00ff47] [text-shadow:_0_0_30px_#00ff47]">{loading? "Loading posts page..." : "No Post Available"}</p>
+        <p className="no-post-msg text-[1.4rem] font-semibold tracking-wide text-center pb-[17rem] mt-8 text-[#00ff47] [text-shadow:_0_0_30px_#00ff47]">{loading? "Loading posts page..." : "No Post Available"}</p>
       ) : (
         postData.map((post) => (
           <div className="post-main-container w-full flex flex-col px-4 py-4 bg-[rgba(17,25,40,0.59)] overflow-hidden border-[1px] border-custom-border text-white font-custom-font rounded-3xl mt-[10px] max-[425px]:py-3" key={post._id}>

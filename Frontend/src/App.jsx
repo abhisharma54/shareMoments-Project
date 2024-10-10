@@ -10,7 +10,7 @@ const router = createBrowserRouter(
         <Route index element={<HomeLogged />} />
         <Route path="register" element={<Signup />} />
       </Route>
-      <Route path="/navbar" element={<Navbar />}>
+      <Route path="/navbar" element={<Navbar />} errorElement={<ErrorBoundary />}>
         <Route path="home" element={<HomeLoggedIn />} />
         <Route path="profile/:username" element={<Profile />} />
         <Route path="profile/:username/editProfile/:userId" element={<EditProfile />}/>
@@ -20,8 +20,8 @@ const router = createBrowserRouter(
         <Route path="addPost" element={<AddPost />} />
         <Route path="explore" element={<Explore />} />
         <Route path="about" element={<About />} />
-        <Route path="*" element={<ErrorBoundary><div className="text-center text-[#00ff47] mt-10">Page not found. Please check the URL or go back to the homepage.</div></ErrorBoundary>} />
       </Route>
+        <Route path="*" element={<ErrorBoundary />} />
     </>
   )
 );

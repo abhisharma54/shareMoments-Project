@@ -139,7 +139,7 @@ function Comment() {
                       <div className="editComment-container absolute top-[25px] right-[-9px] text-[1.8rem] font-medium transition duration-200 ease-in-out max-[768px]:top-[22px] max-[768px]:right-0">
                         <ul className="showCommentEditOption list-none text-[1.3rem] rounded-[10px] bg-[rgb(17,25,40)] border-[1px] border-[rgba(255,255,255,0.175)] before:absolute before:top-[-6px] before:right-[12px] before:w-[12px] before:h-[12px] before:rotate-[45deg] before:bg-[rgb(17,25,40)] before:border-[1px] before:border-l-[rgba(255,255,255,0.175)] before:border-t-[rgba(255,255,255,0.175)] before:border-r-transparent before:border-b-transparent before:transition before:duration-200 before:ease-in-out">
                           <Link 
-                          className=" text-[1.2rem] text-[rgb(33,122,255)] max-[1440px]:text-[1.1rem] max-[768px]:text-[1rem]"
+                          className=" text-[1.2rem] text-[rgb(33,122,255)] hover:no-underline max-[1440px]:text-[1.1rem] max-[768px]:text-[1rem]"
                           to={`editComment/${comment._id}`} 
                           >
                             Edit

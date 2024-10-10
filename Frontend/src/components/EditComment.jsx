@@ -100,7 +100,7 @@ export default function EditPostCard() {
                 ? "Updated Successfully"
                 : "Update"}
             </Button>
-            <Title className="edit-titleImg" />
+            <Title className="edit-titleImg w-[150px] mt-[3rem] max-[768px]:mt-[1rem]" />
           </form>
         )}
       </div>

@@ -14,6 +14,7 @@ function AddPost() {
   const [uploadImgPreview, setUploadImgPreview] = useState("");
 
   const userDetails = useSelector((state) => state.users.userData);
+  const postDetails = useSelector(state => state.posts.postData);
 
   const {
     register,
@@ -102,7 +103,11 @@ function AddPost() {
               onSubmit={handleSubmit(createPost)}
               className="addpost-lower flex flex-col gap-5 text-white bg-[rgba(17,5,40,0.35)] rounded-2xl border-[1px] border-[rgba(255,255,255,0.175)] p-5"
             >
-              <User />
+              <User
+                    fullname={postDetails[0].ownerDetails?.fullname}
+                    username={postDetails[0].ownerDetails?.username}
+                    avatar={postDetails[0].ownerDetails?.avatar?.url}
+                  />
               <textarea
                 minLength={0}
                 maxLength={510}
