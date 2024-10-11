@@ -146,14 +146,14 @@ function Signup() {
                               <Input
                                 type="text"
                                 placeholder="fullname"
-                                {...register("signupFullname", {
+                                {...register("fullname", {
                                   required: "fullname is required",
                                 })}
                               />
                               <i className="input-icon uil uil-selfie absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
-                              {errors.signupFullname && (
+                              {errors.fullname && (
                                 <p className="text-center text-[0.8rem] text-[#00ff47] [text-shadow:_1px_1px_20px_#00cd3a] mt-[-10px] mx-[15px] mb-[5px]">
-                                  {errors.signupFullname.message}
+                                  {errors.fullname.message}
                                 </p>
                               )}
                             </div>
@@ -161,14 +161,14 @@ function Signup() {
                               <Input
                                 type="text"
                                 placeholder="username"
-                                {...register("signupUsername", {
+                                {...register("username", {
                                   required: "username is required",
                                 })}
                               />
                               <i className="input-icon uil uil-user absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
-                              {errors.signupUsername && (
+                              {errors.username && (
                                 <p className="text-center text-[0.8rem] text-[#00ff47] [text-shadow:_1px_1px_20px_#00cd3a] mt-[-10px] mx-[15px] mb-[5px]">
-                                  {errors.signupUsername.message}
+                                  {errors.username.message}
                                 </p>
                               )}
                             </div>
@@ -176,7 +176,7 @@ function Signup() {
                               <Input
                                 type="email"
                                 placeholder="email"
-                                {...register("signupEmail", {
+                                {...register("email", {
                                   required: "email is required",
                                   pattern: {
                                     value:
@@ -186,9 +186,9 @@ function Signup() {
                                 })}
                               />
                               <i className="input-icon uil uil-at absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
-                              {errors.signupEmail && (
+                              {errors.email && (
                                 <p className="text-center text-[0.8rem] text-[#00ff47] [text-shadow:_1px_1px_20px_#00cd3a] mt-[-10px] mx-[15px] mb-[5px]">
-                                  {errors.signupEmail.message}
+                                  {errors.email.message}
                                 </p>
                               )}
                             </div>
@@ -196,7 +196,7 @@ function Signup() {
                               <Input
                                 type="password"
                                 placeholder="password"
-                                {...register("signupPassword", {
+                                {...register("password", {
                                   required: "password is required",
                                   minLength: {
                                     value: 8,
@@ -213,9 +213,9 @@ function Signup() {
                               />
                               <i className="input-icon uil uil-lock absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
                             </div>
-                            {errors.signupPassword && (
+                            {errors.password && (
                               <p className="text-center text-[0.8rem] text-[#00ff47] [text-shadow:_1px_1px_20px_#00cd3a] mt-[-10px] mx-[15px] mb-[5px]">
-                                {errors.signupPassword.message}
+                                {errors.password.message}
                               </p>
                             )}
                             <p className="text-center text-[0.8rem] text-[#00ff47] [text-shadow:_1px_1px_20px_#00cd3a] mt-[-10px] mx-[15px] mb-[5px]">
@@ -251,14 +251,14 @@ function Signup() {
                               <Input
                                 type="text"
                                 placeholder="username"
-                                {...register("loginUsername", {
+                                {...register("username", {
                                   required: "username is required",
                                 })}
                               />
                               <i className="input-icon uil uil-at absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
-                              {errors.loginUsername && (
+                              {errors.username && (
                                 <p className="text-center text-[0.8rem] text-[#00ff47] [text-shadow:_1px_1px_20px_#00cd3a] mt-[-10px] mx-[15px] mb-[5px]">
-                                  {errors.loginUsername.message}
+                                  {errors.username.message}
                                 </p>
                               )}
                             </div>
@@ -266,15 +266,15 @@ function Signup() {
                               <Input
                                 type="password"
                                 placeholder="password"
-                                {...register("loginPassword", {
+                                {...register("password", {
                                   required: "password is required",
                                 })}
                               />
                               <i className="input-icon uil uil-lock-alt absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
                             </div>
-                            {errors.loginPassword && (
+                            {errors.password && (
                               <p className="text-center text-[0.8rem] text-[#00ff47] [text-shadow:_1px_1px_20px_#00cd3a] mt-[-10px] mx-[15px] mb-[5px]">
-                                {errors.loginPassword.message}
+                                {errors.password.message}
                               </p>
                             )}
                             {error && (
