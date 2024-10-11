@@ -1,20 +1,17 @@
-import React, {useId} from 'react'
+import React from 'react'
 
 function Input({
-    type='text',
+    type='',
     className= '',
     ...props
-
 }, ref) {
-    const id = useId();
 
   return (
     <div className='w-full'>
         <input 
         type={type} 
-        className={`${className}`}
+        className={`text-white bg-bgInput px-[2.8rem] py-[0.6rem] rounded-[30px] mb-2.5 outline-none border-[1px] border-[rgba(255,255,255,0.175)] focus:border-[#00ff47] ${className}`}
         ref={ref}
-        id={id}
         {...props}
          />
     </div>

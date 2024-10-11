@@ -35,6 +35,11 @@
   transform: translate3d(0, -50%, 35px) perspective(100px);
 }
 
+input[type="password"]::-ms-reveal {
+  color: white; 
+  filter: invert(100%);
+}
+
 /* .error-msg {
   text-shadow: 1px 1px 20px #00cd3a; // fix this problem
 } */
@@ -42,3 +47,5 @@
 /* .server-error-msg {
   text-shadow: 1px 1px 20px #00cd3a; // fix this problem
 } */
+
+

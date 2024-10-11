@@ -32,12 +32,7 @@ export default {
         'uploadBtn': '4px 1px 10px 0px black',
         'commentBtn': '1px 1px 10px 2px #00ff4849'
       },
-      transformStyle: {
-        'preserve-3d': 'preserve-3d'
-      },
-      perspective: {
-        '800': '800px',
-      }
+      
     },
   },
   plugins: [
@@ -46,16 +41,6 @@ export default {
         {
           '.scrollbar-none': {
             'scrollbar-width': 'none',
-          },
-        },
-        {
-          '.transform-style-preserve-3d': {
-            transformStyle: 'preserve-3d',
-          },
-        },
-        {
-          '.perspective-800': {
-            perspective: '800px',
           },
         },
         ['responsive', 'hover']
