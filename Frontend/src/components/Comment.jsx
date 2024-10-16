@@ -4,7 +4,7 @@ import { PostOptions, LikedImg, UnlikeImg, CommentImg } from "../assets/Asset";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { comments } from "../store/commentSlice";
+import { comments } from "../store/index";
 
 function Comment() {
   const [error, setError] = useState("");
@@ -12,6 +12,7 @@ function Comment() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
   const [allComments, setAllComments] = useState([]);
+
   const userDetails = useSelector((state) => state.users.userData);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,16 +24,17 @@ function Comment() {
   const fetchComments = useCallback(async () => {
     try {
       setError("");
-
       const res = await axios.get(
         `${import.meta.env.VITE_COMMENTS_API_URL}/getPostComment/${postId}`
       );
       const commentData = res.data.data.docs;
-      console.log(res.data.data);
-      
-      
+
+      if(commentData) {
       setAllComments(commentData);
       dispatch(comments(commentData));
+      } else {
+        setAllComments(null)
+      }
     } catch (error) {
       setError("Failed to fetch comment data " + error.message);
     } finally {
@@ -69,7 +71,6 @@ function Comment() {
       const res = await axios.post(
         `${import.meta.env.VITE_LIKES_API_URL}/toggleComment/${commentId}`
       );
-      console.log("comment's like :: ", res.data.data);
       
       const { isCommentLiked } = res.data.data;
       
@@ -165,13 +166,14 @@ function Comment() {
                   </p>
                   <h1 className="comment-content text-[1.3rem] font-medium tracking-[1px] mt-[20px] mb-[15px] max-[1024px]:text-[1.1rem] max-[1024px]:mt-[10px] max-[1024px]:mb-[10px] max-[768px]:text-[1rem]">{comment.comment}</h1>
                     <div className="commentsLike-img flex items-center gap-2.5 max-[1024px]:gap-1.5 max-[425px]:gap-2">
+                      <button onClick={() => likeComment(comment._id)} className="focus:outline-none">
                       <img
-                      className="w-[1.6vw] cursor-pointer transition duration-200 ease-in-out active:scale-[1.5] max-[1024px]:w-[2.4vw] max-[768px]:w-[3vw] max-[425px]:w-[6vw]"
-                        onClick={() => likeComment(comment._id)}
+                      className="w-[2rem] cursor-pointer transition duration-200 ease-in-out active:scale-[1.5] max-[425px]:w-[1.8rem]"
                         src={comment.isCommentLiked ? LikedImg : UnlikeImg}
                         alt="comment-before-like"
                       />
-                      <span className="likesCount text-[1.3rem] font-semibold tracking-[2px] max-[1024px]:text-[1.1rem] max-[768px]:text-[1.2rem] max-[425px]:text-[1.3rem]">{comment.likesCount}</span>
+                      </button>
+                      <span className="likesCount text-[1.5rem] font-semibold tracking-[2px] max-[425px]:text-[1.4rem]">{comment.likesCount}</span>
                     </div>
                   </div>
                 </div>

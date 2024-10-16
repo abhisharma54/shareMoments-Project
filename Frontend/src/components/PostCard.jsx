@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { User } from "./index";
 import { PostOptions, UnlikeImg, CommentImg, LikedImg } from "../assets/Asset";
 import { useDispatch, useSelector } from "react-redux";
-import { post } from "../store/postSlice";
+import { post } from "../store/index.js";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -18,10 +18,9 @@ function PostCard() {
   const dispatch = useDispatch();
   const editPostRef = useRef();
 
-  console.log("comment details :: ", postData);
+  console.log(postData)
   
   useEffect(() => {
-    // get user's posts
     (async () => {
       setError("");
       setLoading(true);
@@ -31,10 +30,10 @@ function PostCard() {
             userDetails?._id
           }`
         );
-        const postData = res.data.data;
-        if (postData) {
-          setPostData(postData);
-          dispatch(post(postData));
+        const userPostData = res.data.data;
+        if (userPostData) {
+          setPostData(userPostData);
+          dispatch(post(userPostData));
         } else {
           setPostData(null);
         }
@@ -42,13 +41,12 @@ function PostCard() {
       } catch (error) {
         setError("Failed to fetch post details: " + error.message);
       } finally {
-  
         setLoading(false);
       }
     })();
   }, [userDetails?._id, dispatch]);
 
-  // delete post
+
   const deletePost = async (postId) => {
     try {
       setIsDeleting(true);
@@ -68,15 +66,11 @@ function PostCard() {
     }
   };
 
-  // like post
   const likePost = async (postId) => {
     try {
-      setError("");
-      setLoading(true);
       const res = await axios.post(
         `${import.meta.env.VITE_LIKES_API_URL}/togglePost/${postId}`
       );
-      console.log("post likes ::", res.data.data);
       
       const { isLiked } = res.data.data;
 
@@ -168,7 +162,9 @@ function PostCard() {
                   <div className="flex justify-center w-full h-[600px] object-cover border-[1px] border-custom-border rounded-2xl max-[1024px]:h-[400px] max-[425px]:h-[300px]">
                     <img
                   className="post-img w-full h-full object-cover rounded-2xl" 
-                  src={post.postImage} alt={post._id} />
+                  src={post.postImage}
+                  alt={post._id}
+                  loading="lazy" />
                   </div>
               )}
               <div title="like" className="post-likes-comments flex gap-[200px] my-[30px] max-[1024px]:my-[25px] max-[768px]:my-[20px] max-[425px]:my-[15px] max-[425px]:gap-[100px]">
@@ -177,7 +173,7 @@ function PostCard() {
                   className="focus:outline-none"
                   onClick={() => likePost(post._id)}>
                   <img
-                  className="w-[2.5vw] transition-all duration-300 ease-in-out active:scale-[1.4] max-[1440px]:w-[2.7vw] max-[1024px]:w-[3.5vw] max-[768px]:w-[4.5vw] max-[425px]:w-[7.4vw]"
+                  className="w-[2.5rem] transition-all duration-300 ease-in-out active:scale-[1.4] max-[425px]:w-[2.1rem]"
                   src={post.isLiked ? LikedImg : UnlikeImg}
                   alt="like-status"
                   />
@@ -187,7 +183,7 @@ function PostCard() {
                 <div title="comment" className="comments flex items-center gap-3">
                   <Link to={`getAllComment/${post._id}`}>
                   <img 
-                  className="w-[2.5vw] transition-all duration-300 ease-in-out active:scale-[1.4] max-[1440px]:w-[2.7vw] max-[1024px]:w-[3.5vw] max-[768px]:w-[4.2vw] max-[425px]:w-[6.8vw]"
+                  className="w-[2.2rem] transition-all duration-300 ease-in-out active:scale-[1.4] max-[425px]:w-[1.9rem]"
                   src={CommentImg} 
                   alt="comments" />
                   </Link>

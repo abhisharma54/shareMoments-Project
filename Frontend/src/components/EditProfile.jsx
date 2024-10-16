@@ -11,7 +11,7 @@ function EditProfile() {
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [avatarPreview, setAvatarPreview] = useState("");
   const [coverImagePreview, setCoverImagePreview] = useState("");
-  const userDetails = useSelector(state => state.users.userData);
+  const userDetails = useSelector((state) => state.users.userData);
   const { register, handleSubmit, reset, setValue } = useForm();
   const avatarInputRef = useRef();
   const coverImageInputRef = useRef();
@@ -43,6 +43,7 @@ function EditProfile() {
       setError("");
       setIsUpdating(true);
       setUpdateSuccess(false);
+      const { fullname, username, bio, avatar, coverImage } = data;
 
       const url = {
         profile: `${
@@ -52,38 +53,19 @@ function EditProfile() {
         coverImage: `${import.meta.env.VITE_USERS_API_URL}/upload-coverImage`,
       };
 
-      if (
-        !data.fullname &&
-        !data.username &&
-        !data.bio &&
-        !data.avatar?.[0] &&
-        !data.coverImage?.[0]
-      ) {
-        setError("At least one field is required to update");
-      }
-
-      if (data.fullname || data.username || data.bio) {
-        const profileFormData = new FormData();
-        profileFormData.append("fullname", data.fullname);
-        profileFormData.append("username", data.username);
-        profileFormData.append("bio", data.bio);
-
-        console.log("Profile FormData:", profileFormData);
-
-        const res = await axios.patch(url.profile, profileFormData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+      if (fullname || username || bio) {
+        await axios.patch(url.profile, { fullname, username, bio });
       }
 
       if (data.avatar?.[0]) {
         const avatarFormData = new FormData();
-        avatarFormData.append("avatar", data.avatar[0]);
+        avatarFormData.append("avatar", avatar[0]);
         await axios.patch(url.avatar, avatarFormData);
       }
 
       if (data.coverImage?.[0]) {
         const coverImageFormData = new FormData();
-        coverImageFormData.append("coverImage", data.coverImage[0]);
+        coverImageFormData.append("coverImage", coverImage[0]);
         await axios.patch(url.coverImage, coverImageFormData);
       }
 
@@ -93,7 +75,6 @@ function EditProfile() {
     } catch (error) {
       setError("Failed to update profile details ", error);
       console.log("Failed to update profile details", error);
-
     } finally {
       setIsUpdating(false);
     }
@@ -134,7 +115,9 @@ function EditProfile() {
               className="cancel-editProfile uil uil-multiply text-[2rem] font-extralight text-white cursor-pointer transition duration-150 ease-in-out hover:text-[rgb(218,58,58)] hover:[text-shadow:_0_0_30px_rgb(255_0_0)] active:text-[#00ff47] max-[425px]:mt-[-2.5rem] max-[425px]:mb-[1rem]"
             ></i>
           </div>
-          <h1 className="text-[#00ff47] text-[2rem] font-semibold max-[768px]:text-[1.8rem] max-[425px]:text-[1.6rem] max-[425px]:mb-0">Edit Profile</h1>
+          <h1 className="text-[#00ff47] text-[2rem] font-semibold max-[768px]:text-[1.8rem] max-[425px]:text-[1.6rem] max-[425px]:mb-0">
+            Edit Profile
+          </h1>
           <div className="editAvatar flex flex-col items-center border-2 border-[rgba(255,255,255,0.175)] rounded-full mb-[-15px]">
             <img
               onClick={() => avatarInputRef.current.click()}
@@ -151,7 +134,7 @@ function EditProfile() {
               onChange={handleFileChange}
             />
           </div>
-            <p className="mb-0">Update Avatar</p>
+          <p className="mb-0">Update Avatar</p>
 
           <div className="editCoverImage w-full border-2 border-[rgba(255,255,255,0.175)] rounded-[20px] mb-[-20px]">
             <img
@@ -172,7 +155,9 @@ function EditProfile() {
               onChange={handleFileChange}
             />
           </div>
-            <p className="text-center font-medium mt-[8px] mb-0">Update Cover Image</p>
+          <p className="text-center font-medium mt-[8px] mb-0">
+            Update Cover Image
+          </p>
 
           <Input
             className="editProfile-input w-full rounded-[20px] px-[20px] py-[8px] bg-[rgba(17,25,40,0.39)] border-[1px] border-[rgba(255,255,255,0.175)] focus:outline-none focus:border-[#00ff47]"

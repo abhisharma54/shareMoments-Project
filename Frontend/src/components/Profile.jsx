@@ -3,7 +3,7 @@ import { PostCard } from "./index";
 import axios from "axios";
 import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../store/authSlice";
+import { login } from "../store/index";
 
 function Profile() {
   const [profileData, setProfileData] = useState({});
@@ -104,7 +104,7 @@ function Profile() {
                 Upload avatar
               </div>
             )}
-            <div className="profile-details-container w-full flex justify-between items-center mt-[5rem] mb-[4rem] max-[1440px]:gap-2 max-[1440px]:mt-[3.5rem] max-[1024px]:mt-[3rem] max-[768px]:items-start max-[768px]:flex-col max-[768px]:mt-[3rem] max-[768px]:mb-10 max-[425px]:mt-6 max-[550px]:mb-[2rem]">
+            <div className="profile-details-container w-full flex justify-between items-center mt-[5rem] mb-[1rem] max-[1440px]:gap-2 max-[1440px]:mt-[3.5rem] max-[1024px]:mt-[3rem] max-[768px]:items-start max-[768px]:flex-col max-[768px]:mt-[3rem] max-[768px]:mb-5 max-[425px]:mt-6 max-[550px]:mb-[2rem]">
               <div className="user-details-container max-[425px]:mr-[12rem] max-[425px]:mt-[1.5rem]">
                 {error || loading ? (
                   <div className="mt-[0.5rem]">
@@ -114,19 +114,19 @@ function Profile() {
                     <p className="text-[1rem] text-[#ededed] mb-0 max-[1440px]:text-[0.86rem] max-[1024px]:text-[0.76rem] max-[425px]:text-[0.72rem]">
                       Loading username...
                     </p>
-                    <h3 className="text-[1.2rem] mb-0 max-[1440px]:text-[1rem] max-[1024px]:text-[0.9rem] max-[425px]:text-[0.8rem]">
+                    <h3 className="hidden font-normal max-[768px]:block max-[768px]:text-[0.9rem] max-[425px]:text-[0.8rem]">
                       Loading bio...
                     </h3>
                   </div>
                 ) : (
-                  <div>
-                    <h1 className="text-[1.3rem] text-nowrap font-semibold tracking-[1px] mb-0 max-[1440px]:text-[1.1rem] max-[1024px]:text-[0.9rem] max-[768px]:text-[1rem] max-[425px]:text-[0.9rem]">
+                  <div className="">
+                    <h1 className="text-[1.2rem] text-nowrap font-semibold tracking-[1px] mb-0 max-[1440px]:text-[1.1rem] max-[768px]:text-[1rem] max-[425px]:text-[0.9rem]">
                       {profileData.fullname || ""}
                     </h1>
                     <p className="text-[1rem] text-[#ededed] mb-0 max-[1440px]:text-[0.86rem] max-[1024px]:text-[0.76rem] max-[425px]:text-[0.72rem]">
                       {profileData.username || ""}
                     </p>
-                    <h3 className="text-[1.2rem] text-nowrap mb-0 max-[1440px]:text-[1rem] max-[1024px]:text-[0.9rem] max-[425px]:text-[0.8rem]">
+                    <h3 className="hidden font-normal max-[768px]:block max-[768px]:text-[0.9rem] max-[768px]:mt-1 max-[768px]:mb-5 max-[425px]:text-[0.8rem]">
                       {profileData.bio || ""}
                     </h3>
                   </div>
@@ -159,13 +159,22 @@ function Profile() {
                 </NavLink>
               </div>
             </div>
+            {error || loading ? (
+              <h3 className="text-[1.2rem] mb-0 max-[1440px]:text-[1rem] max-[1024px]:text-[0.9rem] max-[768px]:hidden max-[425px]:text-[0.8rem]">
+                Loading bio...
+              </h3>
+            ) : (
+              <h3 className="text-[1rem] font-normal mb-6 max-[1440px]:text-[1rem] max-[1024px]:text-[0.9rem] max-[768px]:hidden max-[425px]:text-[0.8rem]">
+                {profileData.bio || ""}
+              </h3>
+            )}
             <div className="allPosts-counter flex items-center gap-2.5 text-white text-[2.2rem] font-medium bg-[rgba(17,25,40,0.59)] rounded-lg px-[20px] py-[10px] tracking-[1px] max-[768px]:gap-1 max-[768px]:px-[13px] max-[768px]:py-1.5">
               <h1 className="text-[2rem] mb-0 max-[1440px]:text-[1.6rem] max-[1024px]:text-[1.5rem] max-[768px]:text-[1.4rem]">
                 All Posts
               </h1>
               <div className="sepration-line h-[1.5rem] mx-[5px] my-[3px] border-[1px] border-[#00ff47]"></div>
               <p className="text-[1.6rem] mb-0 max-[1024px]:text-[1.5rem] max-[768px]:text-[1.4rem]">
-                {postDetails?.length}
+                {postDetails?.length || 0}
               </p>
             </div>
             <div className="user-allPosts flex flex-col mt-[30px] cursor-pointer max-[768px]:mt-[10px]">

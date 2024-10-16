@@ -84,7 +84,7 @@ const deleteComment = AsyncHandler( async(req, res) => {
 
 const getPostComment = AsyncHandler( async(req, res) => {
     const { postId } = req.params;
-    const { page = 1, limit = 10 } = req.query;
+    const { page = 1, limit = 30 } = req.query;
 
     console.log("paggination",req.query);
 

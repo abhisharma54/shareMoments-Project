@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Button, Input, User } from "./index";
+import React, { useState } from "react";
+import { Button } from "./index";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 function AddComment({fetchComments}) {
@@ -10,10 +9,7 @@ function AddComment({fetchComments}) {
   const [loading, setLoading] = useState(false);
   const [submittingComment, setSubmittingComment] = useState(false)
   const [commentSuccessMsg, setCommentSuccessMsg] = useState(false)
-  const comment = useSelector(state => state.comments.commentData)
-  console.log(comment);
   
-
   const {
     register,
     handleSubmit,

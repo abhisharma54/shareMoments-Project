@@ -135,13 +135,13 @@ const logoutUser = AsyncHandler(async (req, res) => {
 const updateAccountDetails = AsyncHandler(async (req, res) => {
   const { userId } = req.params;
   const { fullname, username, bio } = req.body;
-  if (fullname && username && bio) {
+  if (!fullname && !username && !bio) {
     throw new ApiError(403, "One of the fields are required");
   }
 
   const updatedUser = await userModel
     .findByIdAndUpdate(
-      req.user._id,
+      userId,
       {
         $set: {
           fullname,

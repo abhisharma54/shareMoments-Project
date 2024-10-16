@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { PostCard, User } from "./index";
+import { User } from "./index";
 import { PostOptions, CommentImg, LikedImg, UnlikeImg } from "../assets/Asset";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -11,10 +11,7 @@ function Explore() {
   const [allPosts, setAllPosts] = useState([]);
 
   const userDetails = useSelector((state) => state.users.userData);
-
   const editPostRef = useRef();
-
-  console.log("explore page::", allPosts);
 
   useEffect(() => {
     (async () => {
@@ -130,6 +127,7 @@ function Explore() {
                         className="post-img w-full h-full object-cover rounded-2xl"
                         src={post.postImage}
                         alt={post._id}
+                        loading="lazy"
                       />
                     </div>
                   )}

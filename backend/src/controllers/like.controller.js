@@ -13,6 +13,7 @@ const togglePostLike = AsyncHandler( async(req, res) => {
         postLikes: postId,
         likedBy: req.user?._id
     })
+    
 
     if(isLiked) {
         await likeModel.findByIdAndDelete(isLiked._id);
