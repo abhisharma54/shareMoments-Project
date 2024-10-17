@@ -93,7 +93,7 @@ function AddPost() {
     <>
       <div className="addPost-main-container flex w-full h-screen bg-bgColor bg-bgGradient-color font-custom-font overflow-hidden">
         <div className="addPost-container-right flex justify-center items-center gap-5 w-full h-full ">
-          <div className="addPost-right-wrapper flex flex-col gap-5 w-[50vw] max-[425px]:w-full max-[425px]:mx-[30px]">
+          <div className="addPost-right-wrapper flex flex-col gap-5 w-[50vw] max-[768px]:w-[70vw] max-[550px]:w-full max-[550px]:mx-12">
             <div className="addpost-upper text-white px-[30px] py-[10px] font-semibold tracking-[1.5px] rounded-[20px] bg-[rgba(17,5,40,0.35)] border-[1px] border-[rgba(255,255,255,0.175)]">
               <h1 className="text-[1.8rem] text-[#00ff47] mb-0 max-[1024px]:text-[1.2rem] max-[768px]:text-[1.05rem] max-[768px]:ml-[-10px]">
                 Add New Post
@@ -101,7 +101,7 @@ function AddPost() {
             </div>
             <form
               onSubmit={handleSubmit(createPost)}
-              className="addpost-lower flex flex-col gap-5 text-white bg-[rgba(17,5,40,0.35)] rounded-2xl border-[1px] border-[rgba(255,255,255,0.175)] p-5"
+              className="addpost-lower flex flex-col gap-5 text-white bg-[rgba(17,5,40,0.35)] rounded-2xl border-[1px] border-[rgba(255,255,255,0.175)] p-4 max-[550px]:p-4"
             >
               <User
                     fullname={postDetails[0].ownerDetails?.fullname}

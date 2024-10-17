@@ -71,7 +71,7 @@ function Profile() {
           className={
             openProfileDp
               ? "profile-container blur-xl w-full overflow-y-scroll scrollbar-none px-[9vw] max-[1024px]:px-[7vw] max-[768px]:px-5 max-[425px]:px-5"
-              : "profile-container max-w-[50rem] max-[1440px]:w-[45rem] max-[1024px]:w-[40rem] max-[768px]:w-[80vw] max-[425px]:w-full max-[425px]:px-5"
+              : "profile-container max-w-[50rem] max-[1440px]:w-[45rem] max-[1024px]:w-[40rem] max-[768px]:w-[80vw] max-[550px]:w-full max-[550px]:px-5"
           }
         >
           <div className="user-profile-container w-full flex flex-col bg-[rgba(17,25,40,0.59)] border-[1px] border-[rgba(255,255,255,0.275)] rounded-3xl my-[20px] mx-0 px-[40px] py-[20px] overflow-hidden max-[768px]:px-[20px]">
@@ -105,7 +105,7 @@ function Profile() {
               </div>
             )}
             <div className="profile-details-container w-full flex justify-between items-center mt-[5rem] mb-[1rem] max-[1440px]:gap-2 max-[1440px]:mt-[3.5rem] max-[1024px]:mt-[3rem] max-[768px]:items-start max-[768px]:flex-col max-[768px]:mt-[3rem] max-[768px]:mb-5 max-[425px]:mt-6 max-[550px]:mb-[2rem]">
-              <div className="user-details-container max-[425px]:mr-[12rem] max-[425px]:mt-[1.5rem]">
+              <div className="user-details-container max-[425px]:mt-[1.5rem]">
                 {error || loading ? (
                   <div className="mt-[0.5rem]">
                     <h1 className="text-[1.3rem] text-nowrap font-semibold tracking-[1px] mb-0 max-[1440px]:text-[1.1rem] max-[1024px]:text-[0.9rem] max-[768px]:text-[1rem] max-[425px]:text-[0.9rem]">
@@ -126,7 +126,7 @@ function Profile() {
                     <p className="text-[1rem] text-[#ededed] mb-0 max-[1440px]:text-[0.86rem] max-[1024px]:text-[0.76rem] max-[425px]:text-[0.72rem]">
                       {profileData.username || ""}
                     </p>
-                    <h3 className="hidden font-normal max-[768px]:block max-[768px]:text-[0.9rem] max-[768px]:mt-1 max-[768px]:mb-5 max-[425px]:text-[0.8rem]">
+                    <h3 className="hidden font-normal max-[768px]:block max-[768px]:text-[0.9rem] max-[768px]:mt-[0.5px] max-[768px]:mb-5 max-[425px]:text-[0.8rem]">
                       {profileData.bio || ""}
                     </h3>
                   </div>
@@ -160,17 +160,17 @@ function Profile() {
               </div>
             </div>
             {error || loading ? (
-              <h3 className="text-[1.2rem] mb-0 max-[1440px]:text-[1rem] max-[1024px]:text-[0.9rem] max-[768px]:hidden max-[425px]:text-[0.8rem]">
+              <h3 className="text-[1.2rem] mb-0 max-[1440px]:text-[1rem] max-[1024px]:text-[0.9rem] max-[768px]:hidden">
                 Loading bio...
               </h3>
             ) : (
-              <h3 className="text-[1rem] font-normal mb-6 max-[1440px]:text-[1rem] max-[1024px]:text-[0.9rem] max-[768px]:hidden max-[425px]:text-[0.8rem]">
+              <h3 className="text-[1rem] font-normal mb-6 max-[1440px]:text-[1rem] max-[1024px]:text-[0.9rem] max-[768px]:hidden">
                 {profileData.bio || ""}
               </h3>
             )}
             <div className="allPosts-counter flex items-center gap-2.5 text-white text-[2.2rem] font-medium bg-[rgba(17,25,40,0.59)] rounded-lg px-[20px] py-[10px] tracking-[1px] max-[768px]:gap-1 max-[768px]:px-[13px] max-[768px]:py-1.5">
               <h1 className="text-[2rem] mb-0 max-[1440px]:text-[1.6rem] max-[1024px]:text-[1.5rem] max-[768px]:text-[1.4rem]">
-                All Posts
+                Posts
               </h1>
               <div className="sepration-line h-[1.5rem] mx-[5px] my-[3px] border-[1px] border-[#00ff47]"></div>
               <p className="text-[1.6rem] mb-0 max-[1024px]:text-[1.5rem] max-[768px]:text-[1.4rem]">

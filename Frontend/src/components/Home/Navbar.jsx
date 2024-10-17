@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Logo, Title } from "../index";
+import { Button, Logo, Title } from "../index";
 import {
   HomeIcon,
   ProfileIcon,
   NewPostIcon,
   ExploreIcon,
   AboutIcon,
+  SettingIcon,
   Menu,
   logoutIcon,
 } from "../../assets/Asset.js";
@@ -19,11 +20,11 @@ function Navbar() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [settingOpen, setSettingOpen] = useState(false);
 
   const authStatus = useSelector((state) => state.users.status);
   const userDetails = useSelector((state) => state.users.userData);
 
-  const navbarRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -42,7 +43,6 @@ function Navbar() {
       dispatch(emptyComments());
 
       navigate("/register");
-      setLoading(false);
     } catch (error) {
       setError(error);
     } finally {
@@ -75,35 +75,16 @@ function Navbar() {
       icon: ExploreIcon,
       active: authStatus,
     },
-    {
-      path: "about",
-      name: "About",
-      icon: AboutIcon,
-      active: authStatus,
-    },
   ];
-
-  {
-    loading && (
-      <h1 className="text-3xl text-center text-[#00ff47] font-semibold">
-        Loading page...
-      </h1>
-    );
-  }
-  {
-    error && (
-      <p className="text-2xl text-center text-[#00ff47] font-semibold">
-        {error.message}
-      </p>
-    );
-  }
 
   return (
     <>
+    {loading && <h1 className="text-3xl text-center text-[#00ff47] font-semibold">Loading page...</h1>}
+    {error && <p className="text-2xl text-center text-[#00ff47] font-semibold">{error.message}</p>}
       <Link
         to="#"
         title="menu-bar"
-        className="menu-bar bg-bgInput absolute top-8 right-8 w-[6vw] hidden cursor-pointer transition duration-200 ease-in-out hover:scale-[1.2] max-[768px]:block max-[768px]:w-[2.2rem] max-[425px]:w-[2rem]"
+        className="menu-bar bg-bgInput absolute top-8 right-8 w-[6vw] hidden cursor-pointer transition duration-200 ease-in-out hover:scale-[1.2] max-[768px]:block max-[768px]:w-[2.2rem] max-[550px]:hidden"
         onClick={() => setMenuOpen((prev) => !prev)}
       >
         <img src={Menu} alt="menu-icon" />
@@ -112,10 +93,9 @@ function Navbar() {
         <div
           className={
             menuOpen
-              ? "menuOpen p-[20px] bg-bgColor bg-bgNavbar-color transition duration-200 ease-linear overflow-hidden max-[768px]:w-[30vw] max-[600px]:w-[40vw] max-[425px]:w-[50vw] max-[768px]:h-full max-[768px]:absolute max-[768px]:left-0 max-[768px]:z-10"
+              ? "menuOpen p-[20px] bg-bgColor bg-bgNavbar-color transition duration-200 ease-linear overflow-hidden max-[768px]:w-[30vw] max-[600px]:w-[40vw] max-[768px]:h-full max-[768px]:absolute max-[768px]:left-0 max-[768px]:z-10 max-[550px]:hidden"
               : "navbar-container flex flex-col items-center w-[12vw] h-full p-[20px] border-r-[0.5px] border-opacity-20 border-r-[#00b83439] transition-all duration-200 ease-linear max-[1440px]:w-[16vw] max-[1024px]:w-[80px] max-[768px]:absolute max-[768px]:-left-[100%] max-[768px]:-translate-x-[100%]"
           }
-          ref={navbarRef}
         >
           <Link
             to="home"
@@ -150,6 +130,26 @@ function Navbar() {
                   </NavLink>
                 </li>
               ))}
+              <li>
+                  <NavLink
+                    to={'about'}
+                    onClick={handleLinkClick}
+                    className={({ isActive }) =>
+                      `navLink-container-links flex items-center gap-1.5 mb-[35px] ${
+                        isActive ? "text-[#00ff47]" : "text-white"
+                      } hover:text-[#00ff47] cursor-pointer transition duration-150 ease-in-out hover:no-underline hover:scale-[1.05] max-[1024px]:mb-[2rem] max-[1024px]:justify-center max-[768px]:justify-normal`
+                    }
+                  >
+                    <img
+                      src={AboutIcon}
+                      alt="navLink-icon"
+                      className="links-img w-[1.6vw] max-[1440px]:w-[28px] max-[1024px]:w-[28px] max-[425px]:w-[5vw]"
+                    />
+                    <h1 className="font-custom-font font-bold text-[1.3rem] tracking-wider ml-[5px] mb-0 transition duration-200 ease-in-out text-nowrap pr-3 hover:no-underline hover:text-[#00ff47] max-[1440px]:text-[1.1rem] max-[1024px]:hidden max-[768px]:block max-[768px]:text-[1.2rem]">
+                      About
+                    </h1>
+                  </NavLink>
+                </li>
             </ul>
 
             <div className="btn-wrapper flex flex-col justify-center">
@@ -171,6 +171,47 @@ function Navbar() {
           </div>
         </div>
 
+        <div className="hidden bg-bgColor bg-bgHomeCard px-10 py-3 absolute bottom-0 left-0 right-0 z-10 max-[550px]:block">
+        <ul className="flex justify-between items-center mb-0">
+              {navRoutes.map((item) => (
+                <li key={item.name}>
+                  <NavLink
+                    to={item.path}
+                    onClick={handleLinkClick}
+                    title={item.name}
+                  >
+                    <img
+                      src={item.icon}
+                      alt="navLink-icon"
+                      className="w-[2rem] transition duration-200 ease-in hover:scale-[1.15]"
+                    />
+                  </NavLink>
+                </li>
+              ))}
+              <button className={`focus:outline-none transition duration-200 ease-in hover:scale-[1.15] ${settingOpen? 'rotate-45' : ''}`} onClick={() => setSettingOpen(prev => !prev)} to="#">
+              <img
+                src={SettingIcon}
+                alt="navLink-icon"
+                className="w-[2rem]"
+              />
+              </button>
+            </ul>
+            {settingOpen && (
+              <div className="absolute top-[-70px] right-[35px] text-[1.8rem] font-medium transition duration-200 ease-in-out before:hidden">
+              <ul onClick={() => setSettingOpen(false)} className="flex flex-col items-center gap-1 list-none text-[1.2rem] px-[20px] py-[7px] rounded-[10px] bg-[rgb(17,25,40)] border-[1px] border-[rgb(255,255,255,0.175)] before:absolute before:bottom-[11px] before:right-[15px] before:w-[12px] before:h-[12px] before:rotate-[225deg] before:bg-[rgb(17,25,40)] before:border-[1px] before:border-l-[rgba(255,255,255,0.175)] before:border-t-[rgba(255,255,255,0.175)] before:border-r-transparent before:border-b-transparent before:transition before:duration-200 before:ease-in">
+                <button
+                onClick={logoutHandle}
+                className="text-red-500 transition duration-200 ease-in hover:no-underline focus:text-white hover:text-red-600"
+                >
+                  Logout
+                </button>
+                <Link className="text-blue-50 transition duration-200 ease-in hover:text-blue-500 hover:no-underline focus:text-black" to={"about"}>
+                About
+                </Link>
+              </ul>
+            </div>
+            )}
+        </div>
         <main onClick={handleLinkClick} className="w-full h-full">
           <Outlet />
         </main>
