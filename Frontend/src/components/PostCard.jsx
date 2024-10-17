@@ -195,14 +195,6 @@ function PostCard() {
                 className="allComment-container w-full flex flex-col py-4 px-2.5 rounded-xl bg-[rgba(17,25,40)] border-[1px] border-custom-border transition duration-150 ease-in-out hover:no-underline hover:bg-black"
               >
                 <p className="text-white text-lg font-medium max-[768px]:text-base max-[425px]:text-[0.95rem]">Comments</p>
-                {/* <div className="showFirstComment flex items-center gap-2.5 text-white mt-2.5">
-                  <img className="w-[40px] h-[40px] object-cover rounded-full border-[1px] border-[#00cd3a]" src={commentDetails[0].owner.avatar?.url} alt="comment-owner-avatar" />
-                  <div className="flex flex-col gap-0">
-                  <h1 className="text-[1.1rem] decoration-dashed">{commentDetails[0].owner.fullname}</h1>
-                  <p className="text-[0.8rem]">{commentDetails[0].owner.username}</p>
-                  </div>
-                </div>
-                  <div className="first-comment text-white text-[1.2rem] font-medium tracking-wider mt-[10px] max-[768px]:text-[1.1rem]">{commentDetails[0].comment}</div> */}
               </Link>
             </div>
           </div>
