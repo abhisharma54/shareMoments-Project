@@ -171,7 +171,7 @@ function Navbar() {
           </div>
         </div>
 
-        <div className="hidden bg-bgColor bg-bgHomeCard px-10 py-3 absolute bottom-0 left-0 right-0 z-10 max-[550px]:block">
+        <div className="hidden bg-bgColor bg-bgHomeCard px-10 py-3 fixed bottom-0 left-0 right-0 z-10 max-[550px]:block">
         <ul className="flex justify-between items-center mb-0">
               {navRoutes.map((item) => (
                 <li key={item.name}>
@@ -198,7 +198,7 @@ function Navbar() {
             </ul>
             {settingOpen && (
               <div className="absolute top-[-70px] right-[35px] text-[1.8rem] font-medium transition duration-200 ease-in-out before:hidden">
-              <ul onClick={() => setSettingOpen(false)} className="flex flex-col items-center gap-1 list-none text-[1.2rem] px-[20px] py-[7px] rounded-[10px] bg-[rgb(17,25,40)] border-[1px] border-[rgb(255,255,255,0.175)] before:absolute before:bottom-[11px] before:right-[15px] before:w-[12px] before:h-[12px] before:rotate-[225deg] before:bg-[rgb(17,25,40)] before:border-[1px] before:border-l-[rgba(255,255,255,0.175)] before:border-t-[rgba(255,255,255,0.175)] before:border-r-transparent before:border-b-transparent before:transition before:duration-200 before:ease-in">
+              <ul onClick={() => setSettingOpen(false)} className="flex flex-col items-center gap-1 list-none text-[1.2rem] px-[20px] py-[7px] rounded-[10px] bg-[rgb(17,25,40)] border-[1px] border-[rgb(255,255,255,0.175)] before:absolute before:bottom-[-5px] before:right-[15px] before:w-[12px] before:h-[12px] before:rotate-[225deg] before:bg-[rgb(17,25,40)] before:border-[1px] before:border-l-[rgba(255,255,255,0.175)] before:border-t-[rgba(255,255,255,0.175)] before:border-r-transparent before:border-b-transparent before:transition before:duration-200 before:ease-in">
                 <button
                 onClick={logoutHandle}
                 className="text-red-500 transition duration-200 ease-in hover:no-underline focus:text-white hover:text-red-600"

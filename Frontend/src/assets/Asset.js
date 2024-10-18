@@ -22,6 +22,8 @@ import DefaultAvatar from './img/DefaultAvatar.png'
 import titleImg from './img/title.png'
 import logoutIcon from './img/logout-icon.png'
 import successMsg from './img/successMsg.png'
+import LinkedInIcon from './img/linkedin.png'
+import GithubIcon from './img/github.png'
 
 export {
     HomeIcon,
@@ -47,5 +49,7 @@ export {
     DefaultAvatar,
     titleImg,
     logoutIcon,
-    successMsg
+    successMsg,
+    LinkedInIcon,
+    GithubIcon
 }
