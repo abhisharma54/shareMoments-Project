@@ -35,7 +35,6 @@ const createPost = AsyncHandler(async (req, res) => {
     const createdPost = await postModel.findById(post._id);
     
     const user = await userModel.findById(req.user._id)
-    console.log("post.controller::", createPost);
     
     user.allPosts.push(createdPost)
     await user.save({validateBeforeSave: false});

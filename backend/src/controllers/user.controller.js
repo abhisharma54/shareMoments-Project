@@ -325,9 +325,6 @@ const uploadCoverImage = AsyncHandler(async (req, res) => {
   const user = await userModel.findById(req.user._id).select("coverImage");
   const coverImageToDelete = user.public_id;
 
-  console.log(user);
-  console.log(uploadCoverImage.coverImage.public_id);
-
   if (coverImageToDelete && uploadCoverImage.coverImage.public_id) {
     await deleteFromCloudinary(coverImageToDelete);
   }
@@ -477,8 +474,6 @@ const getAllPosts = AsyncHandler(async (req, res) => {
   ]);
 
   if (!posts) throw new ApiError(500, "Failed to  get all posts");
-
-  console.log("getAllPosts::", posts);
 
   return res
     .status(200)
