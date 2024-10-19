@@ -3,9 +3,8 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import { Logo, Title, Button } from "../index";
 import { useLocation } from "react-router-dom";
 
-function Header({ className = "", ...props }) {
+function Header({...props }) {
   const location = useLocation();
-
   const showRegisterBtn = location.pathname === "/";
 
   return (
@@ -24,10 +23,10 @@ function Header({ className = "", ...props }) {
           {showRegisterBtn ? (
             <NavLink to="/register">
               <Button
-                className={`header-btn text-[1rem] transition duration-150 ease-in-out hover:outline-none active:bg-white max-[425px]:text-[0.9rem] ${className}`}
+                className={`header-btn text-[1rem] transition duration-150 ease-in-out hover:shadow-signup-login hover:outline-none active:bg-white max-[425px]:text-[0.9rem]`}
                 type="submit"
               >
-                Sign Up
+                Sign Up / Login
               </Button>
             </NavLink>
           ) : (

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Button, Logo, Title } from "../index";
+import { Logo, Title, Error } from "../index";
 import {
   HomeIcon,
   ProfileIcon,
@@ -79,8 +79,6 @@ function Navbar() {
 
   return (
     <>
-    {loading && <h1 className="text-3xl text-center text-[#00ff47] font-semibold">Loading page...</h1>}
-    {error && <p className="text-2xl text-center text-[#00ff47] font-semibold">{error.message}</p>}
       <Link
         to="#"
         title="menu-bar"
@@ -213,6 +211,13 @@ function Navbar() {
             )}
         </div>
         <main onClick={handleLinkClick} className="w-full h-full">
+        {loading ? (
+          <div className="w-full h-full flex justify-center items-center">
+            <h1 className="text-3xl font-custom-font font-semibold text-white px-4 py-3 bg-bgColor rounded-xl border-[1px] border-[rgb(255,255,255,0.175)] max-[768px]:text-2xl">
+              loading page...
+            </h1>
+        </div>
+        ) : error? <Error errorMessage={error} /> : null}
           <Outlet />
         </main>
       </div>

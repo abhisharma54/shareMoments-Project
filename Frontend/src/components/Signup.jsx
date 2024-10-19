@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input, MessageCard, Title } from "./index";
+import { Button, Input, MessageCard, Title, Error } from "./index";
 import { SignupImg } from "../assets/Asset";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -64,16 +64,7 @@ function Signup() {
 
   return (
     <div className="signup-main-container flex justify-center items-center w-full h-full bg-bgColor bg-bgHomeLoggedIn-color overflow-hidden px-[2rem]">
-      {error ? (
-        <div className="flex flex-col flex-wrap justify-center items-center bg-[#008827] shadow-2xl py-10 mx-auto rounded-xl">
-          <h1 className="text-3xl font-custom-font font-semibold max-[768px]:text-2xl">
-            Server Error
-          </h1>
-          <p className="text-center px-5 font-custom-font text-2xl text-white font-semibold tracking-wider max-[768px]:text-lg max-[425px]:text-base">
-            {error}
-          </p>
-        </div>
-      ) : (
+      {error ? <Error errorMessage={error} /> : (
         <div
           className={registerMsg ? " flex justify-center items-center" : null}
         >
@@ -221,7 +212,7 @@ function Signup() {
                             <p className="text-center text-[0.8rem] text-[#00ff47] [text-shadow:_1px_1px_20px_#00cd3a] mt-[-10px] mx-[15px] mb-[5px]">
                               {registerMsg}
                             </p>
-                            <Button className="form-btn w-[50%] mt-10 px-10 py-1.5 text-[22px] font-semibold hover:shadow-signup-login focus:outline-none active:bg-white max-[1024px]:text-[1.1rem] max-[768px]:text-[1.1rem] max-[425px]:p-[8px] max-[425px]:w-[50vw]">
+                            <Button className="form-btn w-[50%] mt-10 px-10 py-1.5 text-[22px] hover:shadow-signup-login focus:outline-none active:bg-white max-[1024px]:text-[1.1rem] max-[768px]:text-[1.1rem] max-[425px]:p-[8px] max-[425px]:w-[50vw]">
                               Sign Up
                             </Button>
                             <p className="text-white text-[0.9rem] tracking-wide mt-2 mb-14 max-[1440px]:text-[0.8rem] max-[1024px]:text-[0.8rem] max-[768px]:text-[0.8rem] max-[425px]:text-[0.9rem]">

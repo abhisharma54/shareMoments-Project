@@ -19,6 +19,7 @@ import EditPostCard from "./EditPostCard";
 import AddComment from "./AddComment";
 import EdiComment from "./EditComment"
 import MessageCard from "./MessageCard";
+import Error from "./Error";
 
 export {
     Input,
@@ -41,5 +42,6 @@ export {
     EditPostCard,
     AddComment,
     EdiComment,
-    MessageCard
+    MessageCard,
+    Error
 }
