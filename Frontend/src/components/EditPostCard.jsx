@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Input, Title, Button } from "./index";
+import { Input, Title, Button, Error } from "./index";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -24,11 +24,6 @@ export default function EditPostCard() {
   const navigate = useNavigate();
   const { postId } = useParams();
 
-  console.log(
-    "edit post page:: postDetails::",
-    postDetails.find((post) => post._id === postId)
-  );
-
   useEffect(() => {
     const post = postDetails.find((post) => post._id === postId);
     if (post) setValue("content", post.content);
@@ -39,7 +34,6 @@ export default function EditPostCard() {
     setLoading(true);
     try {
       setError("");
-
       await axios.patch(
         `${import.meta.env.VITE_POSTS_API_URL}/edit/${postId}`,
         data
@@ -63,11 +57,7 @@ export default function EditPostCard() {
           <h1 className="text-3xl text-center text-[#00ff47] font-semibold">
             Loading editPost page...
           </h1>
-        ) : error ? (
-          <p className="text-2xl text-center text-[#00ff47] font-semibold">
-            {error.message}
-          </p>
-        ) : (
+        ) : error ? <Error errorMessage={error} /> : (
           <form
             onSubmit={handleSubmit(editPost)}
             className="editPost-container flex flex-col justify-center items-center w-[30vw] gap-5 px-[2rem] py-[3rem] rounded-[20px] bg-[rgba(17,25,40,0.39)] border-[1px] border-[rgba(255,255,255,0.175)] overflow-hidden max-[1440px]:w-[40vw] max-[1024px]:w-[50vw] max-[425px]:w-[100vw]"

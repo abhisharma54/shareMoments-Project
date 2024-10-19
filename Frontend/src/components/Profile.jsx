@@ -35,7 +35,6 @@ function Profile() {
       } catch (error) {
         setError("Failed to fetch user profile details::" + error.message);
         setLoading(true);
-        console.log("Failed to fetch profile details");
       } finally {
         setLoading(false);
       }

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Input, Title, Button } from "./index";
+import { Input, Title, Button, Error } from "./index";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -11,12 +11,14 @@ function EditProfile() {
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [avatarPreview, setAvatarPreview] = useState("");
   const [coverImagePreview, setCoverImagePreview] = useState("");
-  const userDetails = useSelector((state) => state.users.userData);
+  
   const { register, handleSubmit, reset, setValue } = useForm();
+  const userDetails = useSelector((state) => state.users.userData);
+  
   const avatarInputRef = useRef();
   const coverImageInputRef = useRef();
+  
   const navigate = useNavigate();
-
   const { userId } = useParams();
 
   useEffect(() => {
@@ -74,7 +76,6 @@ function EditProfile() {
       navigate(`/navbar/profile/${userDetails?.username}`);
     } catch (error) {
       setError("Failed to update profile details ", error);
-      console.log("Failed to update profile details", error);
     } finally {
       setIsUpdating(false);
     }
@@ -103,7 +104,8 @@ function EditProfile() {
   return (
     <>
       <div className="editProfile-main-container flex justify-center items-center w-full h-screen text-white font-custom-font bg-bgColor bg-bgGradient-color overflow-hidden max-[425px]:px-[2rem]">
-        <form
+        {error ? <Error errorMessage={error} /> : (
+          <form
           onSubmit={handleSubmit(updateProfile)}
           className="editProfile-container flex flex-col justify-center items-center gap-[20px] w-[50vw] rounded-[20px] px-[2rem] py-[3rem] bg-[rgba(17,25,40,0.39)] border-[1px] border-[rgba(255,255,255,0.175)] overflow-hidden max-[1024px]:w-[60vw] max-[768px]:h-[90vh] max-[425px]:w-full"
         >
@@ -187,6 +189,7 @@ function EditProfile() {
           </Button>
           <Title className="edit-titleImg w-[150px] mt-[3rem] max-[768px]:mt-[2rem]" />
         </form>
+        )}
       </div>
     </>
   );

@@ -12,7 +12,6 @@ export default function EditPostCard() {
   const [updateSuccess, setUpdateSuccess] = useState(false);
 
   const userDetails = useSelector(state => state.users.userData);
-  const postDetails = useSelector(state => state.posts.userData);
   const commentDetails = useSelector(state => state.comments.commentData)
 
   const {
@@ -27,7 +26,6 @@ export default function EditPostCard() {
 
   useEffect(() => {
     const findComment = commentDetails.find(c => c._id === commentId);
-    console.log(findComment);
     
     if (findComment) setValue("newComment", findComment.comment);
   }, [commentId, commentDetails, setValue]);

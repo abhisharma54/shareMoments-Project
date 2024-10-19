@@ -59,13 +59,11 @@ function AddPost() {
       if (createPost) {
         dispatch(post(createdPost));
       }
-      console.log("New Post uploaded successfully::", res.data.data);
       reset();
       setUploadSuccess(true);
       navigate(`/navbar/profile/${userDetails?.username}`);
     } catch (error) {
       setError(error.message);
-      console.log("Create Post Failed::", error.message);
     } finally {
       setIsUploading(false);
     }

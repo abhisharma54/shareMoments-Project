@@ -45,7 +45,7 @@ function Signup() {
         `${import.meta.env.VITE_USERS_API_URL}/login`,
         loginUserData
       );
-      console.log("Login Successful:", res.data);
+      
       const userData = res.data.data;
       if (userData) {
         dispatch(login(userData));

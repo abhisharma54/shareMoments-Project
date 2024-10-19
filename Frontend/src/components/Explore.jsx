@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { User } from "./index";
+import { Error, User } from "./index";
 import { PostOptions, CommentImg, LikedImg, UnlikeImg } from "../assets/Asset";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -38,7 +38,6 @@ function Explore() {
       const res = await axios.post(
         `${import.meta.env.VITE_LIKES_API_URL}/togglePost/${postId}`
       );
-      console.log("toggle likes :: ", res.data.data);
 
       const { isLiked } = res.data.data;
 
@@ -70,7 +69,8 @@ function Explore() {
 
   return (
     <div className="explore-main-container w-full h-screen text-white font-custom-font bg-bgColor bg-bgGradient-color flex overflow-hidden">
-      <div className="explore-container w-full flex justify-center overflow-y-scroll px-[9vw] scrollbar-none max-[768px]:px-5">
+      {error ? <Error errorMessage={error} /> : (
+        <div className="explore-container w-full flex justify-center overflow-y-scroll px-[9vw] scrollbar-none max-[768px]:px-5">
         <div className="explore-bg max-w-[50rem] min-h-max border-s-[rgba(255,255,255,0.275)] bg-[rgba(17,25,40,0.59)] rounded-3xl my-[10px] mx-0 px-[40px] py-[20px] overflow-hidden max-[1440px]:w-[45rem] max-[1024px]:w-[40rem] max-[768px]:w-[80vw] max-[550px]:w-full max-[550px]:px-5">
           {allPosts.length === 0 ? (
             <p className="no-post-msg">
@@ -170,6 +170,7 @@ function Explore() {
           )}
         </div>
       </div>
+      )}
     </div>
   );
 }

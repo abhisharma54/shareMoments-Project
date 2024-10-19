@@ -17,8 +17,6 @@ function Comment() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log("total comments", allComments);
-
   const { postId } = useParams();
 
   const fetchComments = useCallback(async () => {

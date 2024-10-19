@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { User } from "./index";
+import { Error, User } from "./index";
 import { PostOptions, UnlikeImg, CommentImg, LikedImg } from "../assets/Asset";
 import { useDispatch, useSelector } from "react-redux";
 import { post } from "../store/index.js";
@@ -17,8 +17,6 @@ function PostCard() {
 
   const dispatch = useDispatch();
   const editPostRef = useRef();
-
-  console.log(postData)
   
   useEffect(() => {
     (async () => {
@@ -102,13 +100,7 @@ function PostCard() {
 
   return (
     <>
-      {error && (
-        <p className="text-2xl text-center text-[#00ff47] font-semibold">
-          {error.message}
-        </p>
-      )}
-
-      {postData.length === 0 ? (
+    {error ? <Error errorMessage={error} /> : postData.length === 0 ? (
         <p className="no-post-msg text-[1.4rem] font-semibold tracking-wide text-center pb-[17rem] mt-8 text-[#00ff47] [text-shadow:_0_0_30px_#00ff47]">{loading? "Loading posts page..." : "No Post Available"}</p>
       ) : (
         postData.map((post) => (

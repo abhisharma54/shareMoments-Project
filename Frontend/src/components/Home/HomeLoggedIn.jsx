@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HomeLoggedInImg } from "../../assets/Asset";
-import { Title } from "../index";
+import { Error, Title } from "../index";
 import { useDispatch, useSelector } from 'react-redux'
 import axios from "axios";
 
@@ -8,10 +8,8 @@ export default function HomeLoggedIn() {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const [userData, setUserData] = useState({})
-  const userDetails = useSelector(state => state.users.userData);
+
   const dispatch = useDispatch()
-  console.log("homeLoggedIn", userDetails);
-  
 
   useEffect(() => {
     (async () => {
@@ -23,20 +21,17 @@ export default function HomeLoggedIn() {
  
        } catch (error) {
          setError("Failded to login "+ error.message)
-         console.log("Failed to fetch::HomeLogged", error);
        } finally {
          setLoading(false)
        }
      })();
    }, [dispatch])
 
-  {loading? <h1 className="text-3xl text-center text-[#00ff47] font-semibold">Loading page...</h1> : null}
-  {error? <p className="text-2xl text-center text-[#00ff47] font-semibold">{error.message}</p> : null}
-
   return (
     <>
       <div className="HomeLoggedIn-main-container flex w-full h-screen bg-bgColor bg-bgGradient-color overflow-hidden">
-        <div className="HomeLoggedIn-container-right flex flex-col justify-center items-center w-full h-full">
+        {error ? <Error errorMessage={error} /> : (
+          <div className="HomeLoggedIn-container-right flex flex-col justify-center items-center w-full h-full">
           <div className="img-container w-[35vw] max-[1024px]:w-[45vw] max-[768px]:w-[55vw] max-[425px]:w-[80vw]">
             <img src={HomeLoggedInImg} alt="main-homePage-welcome-img" />
           </div>
@@ -48,6 +43,7 @@ export default function HomeLoggedIn() {
             <Title className="title-img w-[42rem] max-[1440px]:w-[29rem] max-[1024px]:w-[28rem] max-[768px]:w-[23rem] max-[425px]:w-[18rem]" />
           </div>
         </div>
+        )}
       </div>
     </>
   );
