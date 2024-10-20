@@ -10,7 +10,7 @@ export default defineConfig({
       '/api': {
         target: process.env.VITE_BE_API_URL,
         changeOrigin: true,
-        secure: true,
+        secure: false,
       },
     },
   },
