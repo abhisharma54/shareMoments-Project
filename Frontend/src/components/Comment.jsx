@@ -103,8 +103,8 @@ function Comment() {
   };
 
   return (
-      <div className="comment-main-container flex justify-center w-full h-screen text-white bg-bgColor bg-bgGradient-color overflow-hidden max-[1440px]:p-[20px] max-[768px]:p-[10px]">
-        <div className="comment-bg flex flex-col w-[50vw] h-[90vh] bg-[rgba(17,25,40,0.59)] border-[1px] border-[rgba(255,255,255,0.275)] rounded-3xl m-[3rem] px-4 py-5 overflow-y-scroll scrollbar-none max-[768px]:w-[60vw] max-[425px]:w-full max-[425px]:mx-[20px] max-[425px]:px-0">
+      <div className="flex justify-center w-full text-white max-[1440px]:p-[20px] max-[768px]:p-[10px]">
+        <div className="comment-bg flex flex-col w-[50vw] h-[90vh] bg-[rgba(17,25,40,0.59)] border-[1px] border-[rgba(255,255,255,0.275)] rounded-3xl m-[3rem] px-4 py-5 overflow-y-scroll scrollbar-none max-[768px]:w-[60vw] max-[550px]:w-full max-[550px]:mx-[20px] max-[550px]:px-0">
           <i
             onClick={() => navigate(`/navbar/profile/${userDetails?.username}`)}
             className="cancel-comment uil uil-multiply text-[1.5rem] mb-[-15px] text-end cursor-pointer hover:text-[rgb(218,58,58)] active:text-[#00ff47] max-[425px]:text-[1.5rem] max-[425px]:mb-[-15px] max-[425px]:text-end"

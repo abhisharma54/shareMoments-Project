@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Navbar, Title, Logo, User, Input, Button } from "./index";
+import { User, Input, Button } from "./index";
 import { UploadPost, UploadImg } from "../assets/Asset";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { post } from "../store/postSlice";
+import imageCompression from 'browser-image-compression'
 
 function AddPost() {
   const [error, setError] = useState("");
@@ -16,6 +17,7 @@ function AddPost() {
   const userDetails = useSelector((state) => state.users.userData);
   const postDetails = useSelector(state => state.posts.postData);
 
+  console.log("post details", postDetails)
   const {
     register,
     handleSubmit,
@@ -41,11 +43,13 @@ function AddPost() {
       setIsUploading(true);
       setUploadSuccess(false);
 
-      const formData = new FormData();
-      formData.append("content", data.content);
+      const { content, postImage } = data;
 
-      if (data.postImage?.[0]) {
-        formData.append("postImage", data.postImage[0]);
+      const formData = new FormData();
+      formData.append("content", content);
+
+      if (postImage?.[0]) {
+        formData.append("postImage", postImage[0]);
       }
 
       const res = await axios.post(
@@ -69,9 +73,8 @@ function AddPost() {
     }
   };
 
-  const handleFileSelect = (e) => {
+  const handleFileSelect = async (e) => {
     const { name, files } = e.target;
-
     if (files.length === 0) {
       setUploadImgPreview("");
       return;
@@ -80,7 +83,15 @@ function AddPost() {
     if (files && files.length > 0) {
       setValue(name, files);
 
-      const fileUrl = URL.createObjectURL(files[0]);
+      const options = {
+        maxSizeMB: 1, 
+        maxWidthOrHeight: 800,
+        useWebWorker: true
+      }
+
+      const compressedFile = await imageCompression(files[0], options)
+
+      const fileUrl = URL.createObjectURL(compressedFile);
       if (name === "postImage") {
         setUploadImgPreview(fileUrl);
       }
@@ -131,6 +142,7 @@ function AddPost() {
               <Input
                 className="addPost-file hidden"
                 type="file"
+                accept="image/*"
                 {...register("postImage")}
                 ref={uploadPostRef}
                 onChange={handleFileSelect}

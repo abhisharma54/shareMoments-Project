@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Input, MessageCard, Title, Error } from "./index";
-import { SignupImg } from "../assets/Asset";
+import { SignupImg, eyeIcon, hiddenIcon } from "../assets/Asset";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import "./CSS/Signup.css";
@@ -13,6 +13,8 @@ function Signup() {
   const [registerMsg, setRegisterMsg] = useState("");
   const [loading, setLoading] = useState(true);
   const [isSignUp, setIsSignUp] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -45,7 +47,7 @@ function Signup() {
         `${import.meta.env.VITE_USERS_API_URL}/login`,
         loginUserData
       );
-      
+
       const userData = res.data.data;
       if (userData) {
         dispatch(login(userData));
@@ -63,8 +65,10 @@ function Signup() {
   };
 
   return (
-    <div className="signup-main-container flex justify-center items-center w-full h-full bg-bgColor bg-bgHomeLoggedIn-color overflow-hidden px-[2rem]">
-      {error ? <Error errorMessage={error} /> : (
+    <div className="w-full overflow-hidden py-2">
+      {error ? (
+        <Error errorMessage={error} />
+      ) : (
         <div
           className={registerMsg ? " flex justify-center items-center" : null}
         >
@@ -78,16 +82,16 @@ function Signup() {
                 : "signup-container flex justify-center items-center gap-[30px] px-[40px] max-[1440px]:w-full max-[1440px]:h-full max-[1440px]:gap-0 max-[1024px]:gap-[10px] max-[768px]:px-[120px]"
             }
           >
-            <div className="signup-container-left flex justify-center items-center w-[40vw] px-[30px] max-[425px]:text-center max-[425px]:p-0 max-[425px]:mx-[12px] max-[768px]:hidden">
+            <div className="w-[40rem] px-[30px] max-[1024px]:hidden">
               <img
-                className="mix-blend-hard-light w-full h-full object-contain"
+                className="mix-blend-hard-light"
                 src={SignupImg}
                 alt="signup-page-img"
               />
             </div>
-            <div className="signup-container-right flex justify-center items-center w-[50vw]">
+            <div className="flex justify-center items-center w-[50vw]">
               <div className="section max-[768px]:w-[90vw] max-[425px]:w-[90vw]">
-                <div className="signup-login flex justify-center items-center m-auto w-max rounded-xl border-[1px] border-[#00a32e] shadow-signup-login overflow-hidden max-[425px]:mb-[-30px]">
+                <div className="signup-login flex justify-center items-center m-auto w-max rounded-xl border-[1px] border-green-500 shadow-signup-login overflow-hidden max-[425px]:mb-[-30px]">
                   <span
                     className={
                       isSignUp
@@ -117,7 +121,7 @@ function Signup() {
                   id="check-btn"
                 />
                 <label
-                  className="relative block w-[60px] h-[16px] rounded-xl mx-auto my-[20px] bg-[#ffeba7] cursor-pointer before:absolute before:block before:w-[36px] before:h-[36px] before:rounded-full before:bg-[#00a32e] before:text-[#ffeba7] before:content-['\eb4f'] before:z-20 before:top-[-10px] left-[-10px] before:leading-9 before:text-center before:text-[24px] before:font-unicons before:transition-all before:duration-500 before:ease-in-out"
+                  className="relative block w-[60px] h-[16px] rounded-xl mx-auto my-[20px] bg-[#ffeba7] cursor-pointer before:absolute before:block before:w-[36px] before:h-[36px] before:rounded-full before:bg-[#00a32e] before:text-[#ffeba7] before:content-['\eb4f'] before:z-20 before:top-[-10px] left-[-10px] before:leading-9 before:text-center before:text-[24px] before:font-unicons before:border-[1px] before:border-green-500 before:transition-all before:duration-500 before:ease-in-out"
                   htmlFor="check-btn"
                   onClick={() => setIsSignUp((prev) => !prev)}
                 ></label>
@@ -185,7 +189,7 @@ function Signup() {
                             </div>
                             <div className="form-group relative block m-0 p-0">
                               <Input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 placeholder="password"
                                 {...register("password", {
                                   required: "password is required",
@@ -203,6 +207,26 @@ function Signup() {
                                 })}
                               />
                               <i className="input-icon uil uil-lock absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
+                              <span
+                                className="absolute top-2.5 right-4 cursor-pointer"
+                                onClick={() => setShowPassword((prev) => !prev)}
+                              >
+                                {showPassword ? (
+                                  <img
+                                    className="w-[1.5rem] opacity-85"
+                                    src={eyeIcon}
+                                    alt="showEyeIcon"
+                                    loading="lazy"
+                                  />
+                                ) : (
+                                  <img
+                                    className="w-[1.5rem] opacity-85"
+                                    src={hiddenIcon}
+                                    alt="hideEyeIcon"
+                                    loading="lazy"
+                                  />
+                                )}
+                              </span>
                             </div>
                             {errors.password && (
                               <p className="text-center text-[0.8rem] text-[#00ff47] [text-shadow:_1px_1px_20px_#00cd3a] mt-[-10px] mx-[15px] mb-[5px]">
@@ -255,13 +279,33 @@ function Signup() {
                             </div>
                             <div className="form-group relative block m-0 p-0">
                               <Input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 placeholder="password"
                                 {...register("password", {
                                   required: "password is required",
                                 })}
                               />
                               <i className="input-icon uil uil-lock-alt absolute top-1 left-3.5 text-[#cbcbcb] text-[1.4rem] text-left transition-all duration-200 ease-linear"></i>
+                              <span
+                                className="absolute top-2.5 right-4 cursor-pointer"
+                                onClick={() => setShowPassword((prev) => !prev)}
+                              >
+                                {showPassword ? (
+                                  <img
+                                    className="w-[1.4rem]"
+                                    src={eyeIcon}
+                                    alt="showEyeIcon"
+                                    loading="lazy"
+                                  />
+                                ) : (
+                                  <img
+                                    className="w-[1.4rem]"
+                                    src={hiddenIcon}
+                                    alt="hideEyeIcon"
+                                    loading="lazy"
+                                  />
+                                )}
+                              </span>
                             </div>
                             {errors.password && (
                               <p className="text-center text-[0.8rem] text-[#00ff47] [text-shadow:_1px_1px_20px_#00cd3a] mt-[-10px] mx-[15px] mb-[5px]">

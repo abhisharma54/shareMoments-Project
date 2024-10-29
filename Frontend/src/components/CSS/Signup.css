@@ -33,6 +33,5 @@
 }
 
 input[type="password"]::-ms-reveal {
-  color: white; 
-  filter: invert(100%);
+  display: none;
 }

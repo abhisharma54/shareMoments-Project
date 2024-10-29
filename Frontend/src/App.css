@@ -1,7 +1,14 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  background-image: radial-gradient(at 46% 33%, hsl(136.71, 100%, 40%) 0,transparent 69%), radial-gradient(at 82% 65%, hsl(240, 10%, 13%) 0, transparent 55%);;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
   background-color: #202020;
 }
+

@@ -42,7 +42,7 @@ function Profile() {
   }, [username, dispatch]);
 
   return (
-    <div className="profile-main-container w-full h-screen flex justify-center bg-bgColor bg-bgGradient-color text-white font-custom-font overflow-hidden">
+    <div className="w-full h-full flex justify-center bg-bgColor bg-bgGradient-color text-white font-custom-font">
       <div className="overflow-y-scroll scrollbar-none w-full flex justify-center">
         <div
           onClick={() => setOpenProfileDp((prev) => !prev)}

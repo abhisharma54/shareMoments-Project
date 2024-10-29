@@ -24,6 +24,8 @@ import logoutIcon from './img/logout-icon.png'
 import successMsg from './img/successMsg.png'
 import LinkedInIcon from './img/linkedin.png'
 import GithubIcon from './img/github.png'
+import eyeIcon from './img/eye.png'
+import hiddenIcon from './img/hidden.png'
 
 export {
     HomeIcon,
@@ -51,5 +53,7 @@ export {
     logoutIcon,
     successMsg,
     LinkedInIcon,
-    GithubIcon
+    GithubIcon,
+    eyeIcon, 
+    hiddenIcon
 }

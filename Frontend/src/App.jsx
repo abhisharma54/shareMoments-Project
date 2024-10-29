@@ -2,6 +2,7 @@ import React from "react";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import { About, AddPost, HomeLoggedIn, Navbar, Profile, Explore, Signup, Header, HomeLogged, EditProfile, EditPostCard, CommentCard, EdiComment } from './components';
 import ErrorBoundary from "./components/ErrorBoundary";
+import './App.css'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,7 +29,7 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
   );
 }
 
