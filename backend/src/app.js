@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import cookieParser from 'cookie-parser'
 import { connectDB } from "./dbConnect/db.connect.js";
+import cors from 'cors'
 
 dotenv.config({ path: "./.env" });
 
@@ -11,7 +12,10 @@ app.use(express.json({limit: "16kb"}));
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use(cookieParser());
-
+app.use(cors({
+  origin: 'http://share-moments-project.vercel.app',
+  credentials: true,
+}))
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++
@@ -30,7 +34,7 @@ app.use('/api/v1/likes', likeRouter)
 
 connectDB()
 .then(() => {
-  const port = process.env.PORT;
+  const port = process.env.PORT || 5000;
   app.listen(port, () => {
     console.log(`Server is running at port http://localhost:${port}`);
   });
