@@ -2,7 +2,7 @@ import React from "react";
 
 function Error({errorMessage }) {
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="w-full h-full flex items-center">
       <div className="flex flex-col flex-wrap justify-center items-center bg-[#008827] shadow-2xl py-10 mx-auto rounded-xl">
         <h1 className="text-3xl font-custom-font font-semibold max-[768px]:text-2xl">
           Server Error

@@ -29,10 +29,10 @@ export default function HomeLoggedIn() {
 
   return (
     <>
-      <div className="HomeLoggedIn-main-container flex w-full h-screen bg-bgColor bg-bgGradient-color overflow-hidden">
+      <div className="w-full h-full scrollbar-none overflow-auto">
         {error ? <Error errorMessage={error} /> : (
-          <div className="HomeLoggedIn-container-right flex flex-col justify-center items-center w-full h-full">
-          <div className="img-container w-[35vw] max-[1024px]:w-[45vw] max-[768px]:w-[55vw] max-[425px]:w-[80vw]">
+          <div className="w-full h-full flex flex-col justify-center items-center">
+          <div className="img-container w-[35vw] max-[1024px]:w-[45vw] max-[768px]:w-[30rem] max-[550px]:w-[80vw]">
             <img src={HomeLoggedInImg} alt="main-homePage-welcome-img" />
           </div>
           <div className="content-container flex flex-col justify-center items-center mt-[50px] max-[1440px]:mt-[40px]">
