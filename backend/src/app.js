@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use(cookieParser());
 app.use(cors({
-  origin: 'http://share-moments-project.vercel.app',
+  origin: 'https://share-moments-project.vercel.app',
   credentials: true,
 }))
 
